@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lớp học 0 đồng</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    #image-container {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 1rem;
+      width: 100%;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 1rem;
+      scroll-padding-right: 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #image-container img {
+      width: 16rem;
+      height: 10rem;
+      object-fit: cover;
+      border-radius: 0.25rem;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+      scroll-snap-align: start;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    #image-container img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <header class="bg-blue-600 text-white py-6">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold">Lớp học 0 đồng</h1>
+      <p class="text-lg mt-2">Lan tỏa tri thức – Kết nối yêu thương</p>
+    </div>
+  </header>
+
+  <section class="py-12 px-4 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4 text-center">Về lớp học</h2>
+    <p class="mb-4 text-justify">Lớp học 0 đồng tại Đà Nẵng đã hoạt động hơn 3 năm, dạy miễn phí cho trẻ em có hoàn cảnh khó khăn. Được duy trì bởi các tình nguyện viên và được nhiều đài báo đưa tin.</p>
+    <ul class="list-disc list-inside mb-6">
+      <li><a href="https://youtube.com/@lophoc0dong" class="text-blue-600 underline" target="_blank">Kênh YouTube chính thức</a></li>
+      <li><a href="https://baodanang.vn/channel/5399/202305/day-tieng-anh-mien-phi-cho-tro-ngheo-3943964/index.htm" class="text-blue-600 underline" target="_blank">Báo Đà Nẵng</a></li>
+      <li><a href="https://www.sggp.org.vn/chi-bo-mo-lop-hoc-mien-phi-post701482.html" class="text-blue-600 underline" target="_blank">Báo SGGP</a></li>
+      <li><a href="https://www.laodong.vn/nguoi-viet-tu-te/lop-hoc-tieng-anh-mien-phi-cho-tre-em-ngheo-tai-da-nang-1214141.ldo" class="text-blue-600 underline" target="_blank">Báo Lao Động</a></li>
+      <li><a href="https://danviet.vn/da-nang-am-long-lop-hoc-0-dong-cho-hoc-sinh-co-hoan-canh-kho-khan-20230717125821818.htm" class="text-blue-600 underline" target="_blank">Báo Dân Việt</a></li>
+    </ul>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/8T5W3QjEWII" frameborder="0" allowfullscreen></iframe>
+      <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/xUWT3TvBHTM" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section id="gallery" class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4 text-center">Hình ảnh lớp học</h2>
+      <div id="image-container" class="pb-2"></div>
+    </div>
+  </section>
+
+  <script>
+    const imageContainer = document.getElementById('image-container');
+    let index = 1;
+    function loadNextImage() {
+      const img = new Image();
+      img.src = `image/img${index}.jpg`;
+      img.alt = `Ảnh ${index}`;
+      img.onload = function () {
+        imageContainer.appendChild(img);
+        index++;
+        loadNextImage();
+      };
+      img.onerror = function() {
+        // Kết thúc khi không còn ảnh
+      };
+    }
+    loadNextImage();
+  </script>
+
+  <section class="bg-blue-50 py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-center">Bạn có thể tham gia cùng chúng tôi</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-semibold mb-2">Mạnh Thường Quân</h3>
+          <p>Hỗ trợ tài chính, học cụ hoặc vật phẩm giúp duy trì lớp học.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-semibold mb-2">Tình nguyện viên</h3>
+          <p>Tham gia giảng dạy, tổ chức lớp hoặc hỗ trợ hoạt động.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-semibold mb-2">Đăng ký học viên</h3>
+          <p>Dành cho các bé có hoàn cảnh khó khăn muốn tham gia lớp học miễn phí.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gray-100 py-12 px-4">
+    <div class="max-w-xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-center">Liên hệ với chúng tôi</h2>
+      <form action="https://formspree.io/f/xnndrarw" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Họ và tên" required class="w-full border px-4 py-2 rounded" />
+        <input type="email" name="email" placeholder="Email" required class="w-full border px-4 py-2 rounded" />
+        <input type="text" name="phone" placeholder="Số điện thoại liên lạc của bạn" required class="w-full border px-4 py-2 rounded" />
+        <textarea name="message" placeholder="Nội dung liên hệ" rows="4" required class="w-full border px-4 py-2 rounded"></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Gửi</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 text-white py-6 text-center">
+    <p>© 2025 Lớp học 0 đồng - Kết nối yêu thương</p>
+    <p>
+      <a href="https://youtube.com/@lophoc0dong" class="underline text-blue-300" target="_blank">YouTube</a> |
+      <span class="text-gray-400">Zalo nhóm (sẽ cập nhật sau)</span>
+    </p>
+  </footer>
+
+</body>
+</html>

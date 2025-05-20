@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lớp học 0 đồng</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f7fa;
+            background-image: url('path/to/your/pattern.png');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        header {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            background-color: #90EE90;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            margin: 0 0.5rem;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #image-container {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            gap: 1rem;
+            scroll-snap-type: x mandatory;
+            padding: 1rem 0;
+            scroll-padding: 1rem;
+        }
+
+        #image-container img {
+            flex-shrink: 0;
+            width: 20rem;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            scroll-snap-align: start;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        #image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        #image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        #modal-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 0.5rem;
+        }
+
+        #modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+    <header class="bg-blue-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold">Lớp học 0 đồng</h1>
+            <p class="text-lg mt-2">Lan tỏa tri thức – Kết nối yêu thương</p>
+            <div class="menu-container">
+                <span class="menu-icon" onclick="scrollToSection('introduction')">Giới thiệu</span>
+                <span class="menu-icon" onclick="scrollToSection('gallery')">Hình ảnh</span>
+                <span class="menu-icon" onclick="scrollToSection('participate')">Tham gia</span>
+                <span class="menu-icon" onclick="scrollToSection('contact')">Liên hệ</span>
+                <span class="menu-icon" onclick="openThongBao()">Thông báo</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="introduction" class="py-12 px-4 max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-4 text-center">Giới thiệu</h2>
+        <div class="mb-6">
+            <p class="mb-4 text-justify">
+                <span class="font-semibold">Lớp học 0 đồng</span> tại 131/4 Lý Thái Tổ, phường Thạc Gián, quận Thanh Khê, thành phố Đà Nẵng đã hoạt động hơn 3 năm, dạy miễn phí cho trẻ em có hoàn cảnh khó khăn.
+                <span class="italic">Được duy trì bởi các tình nguyện viên</span> và được nhiều đài báo đưa tin.
+            </p>
+            <p class="font-semibold">
+                Hiện đang duy trì các lớp dành cho học sinh tiểu học (Từ lớp 1 đến lớp 5):
+            </p>
+            <ul class="list-none pl-4">
+                <li class="mb-2">
+                    <span class="mr-2">☀️</span>
+                    <span class="font-semibold">Các lớp trong dịp hè:</span>
+                    <ul class="list-disc pl-8">
+                        <li>
+                            <span class="mr-2">🎨</span>
+                            Lớp Vẽ (Dành cho các bé lớp 3, 4, 5)
+                        </li>
+                    </ul>
+                </li>
+                <li class="mb-2">
+                    <span class="mr-2">🏫</span>
+                    <span class="font-semibold">Các lớp mở theo năm học tại trường:</span>
+                    <ul class="list-disc pl-8">
+                        <li>
+                            <span class="mr-2">📚</span>
+                            Lớp Toán, tiếng Việt và kỹ năng sống (dành cho lớp 4, 5)
+                        </li>
+                        <li>
+                            <span class="mr-2">🔤</span>
+                            Lớp Tiếng Anh nhỏ (Dành cho các bé lớp 1, 2, 3)
+                        </li>
+                        <li>
+                            <span class="mr-2">🔡</span>
+                            Lớp Tiếng Anh lớn (Dành cho các bé lớp 4, 5)
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <ul class="list-disc list-inside mb-6">
+            <li><a href="https://youtube.com/@lophoc0dong" class="text-blue-600 underline" target="_blank">Kênh YouTube chính thức</a></li>
+            <li><a href="https://baodanang.vn/channel/5399/202305/day-tieng-anh-mien-phi-cho-tro-ngheo-3943964/index.htm" class="text-blue-600 underline" target="_blank">Báo Đà Nẵng</a></li>
+            <li><a href="https://www.sggp.org.vn/chi-bo-mo-lop-hoc-mien-phi-post701482.html" class="text-blue-600 underline" target="_blank">Báo SGGP</a></li>
+            <li><a href="https://www.laodong.vn/nguoi-viet-tu-te/lop-hoc-tieng-anh-mien-phi-cho-tre-em-ngheo-tai-da-nang-1214141.ldo" class="text-blue-600 underline" target="_blank">Báo Lao Động</a></li>
+            <li><a href="https://danviet.vn/da-nang-am-long-lop-hoc-0-dong-cho-hoc-sinh-co-hoan-canh-kho-khan-20230717125821818.htm" class="text-blue-600 underline" target="_blank">Báo Dân Việt</a></li>
+            <li><a href="https://phunudanang.org.vn/thanh-khe-chung-tay-mo-lop-hoc-0-dong/" class="text-blue-600 underline" target="_blank">Trang tin của "Phụ nữ Đà Nẵng"</a></li>
+        </ul>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/8T5W3QjEWII" frameborder="0" allowfullscreen></iframe>
+            <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/xUWT3TvBHTM" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4 text-center">Hình ảnh lớp học</h2>
+            <div id="image-container"></div>
+            <div id="image-modal">
+                <img id="modal-image" src="" alt="Ảnh phóng to">
+                <button id="modal-close-btn">×</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="participate" class="bg-blue-50 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">Bạn có thể tham gia cùng chúng tôi</h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-yellow-100 p-6 rounded shadow hover:shadow-lg transition" onclick="scrollToSection('contact')">
+                    <h3 class="text-xl font-semibold mb-2 text-yellow-700">Mạnh Thường Quân</h3>
+                    <p class="text-gray-700">Hỗ trợ tài chính, học cụ hoặc vật phẩm giúp duy trì lớp học.</p>
+                </div>
+                <div class="bg-green-100 p-6 rounded shadow hover:shadow-lg transition" onclick="scrollToSection('contact')">
+                    <h3 class="text-xl font-semibold mb-2 text-green-700">Tình nguyện viên</h3>
+                    <p class="text-gray-700">Tham gia giảng dạy, tổ chức lớp hoặc hỗ trợ hoạt động.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded shadow hover:shadow-lg transition" onclick="scrollToSection('contact')">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700">Đăng ký học viên</h3>
+                    <p class="text-gray-700">Dành cho các bé có hoàn cảnh khó khăn muốn tham gia lớp học miễn phí.</p>
+                    <p class="text-gray-700 mt-2">
+                        Vui lòng liên hệ để đăng ký. Cần ghi rõ thông tin: tên bé, tuổi, đăng ký học lớp, cha mẹ hoặc người đỡ đầu, địa chỉ,
+                        số điện thoại (zalo) liên lạc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-gray-100 py-12 px-4">
+        <div class="max-w-xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center">Liên hệ với chúng tôi</h2>
+            <form id="contact-form" class="space-y-4" action="https://formsubmit.co/lop0dongthacgian@gmail.com" method="POST">
+                <input type="text" name="name" placeholder="Họ và tên" required class="w-full border px-4 py-2 rounded" />
+                <input type="email" name="email" placeholder="Email" required class="w-full border px-4 py-2 rounded" />
+                <input type="text" name="phone" placeholder="Số điện thoại liên lạc của bạn" required class="w-full border px-4 py-2 rounded" />
+                <textarea name="message" placeholder="Nội dung liên hệ" rows="4" required class="w-full border px-4 py-2 rounded"></textarea>
+                <input type="hidden" name="_subject" value="Liên hệ từ Website Lớp học 0 đồng">
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Gửi</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6 text-center">
+        <p>© 2025 Lớp học 0 đồng - Kết nối yêu thương</p>
+        <p>
+            <a href="https://youtube.com/@lophoc0dong" class="underline text-blue-300" target="_blank">YouTube</a> |
+            <a href="https://zalo.me/g/dqjxww462" class="underline text-blue-300" target="_blank">Nhóm Zalo</a>
+        </p>
+    </footer>
+
+    <script>
+        const imageContainer = document.getElementById('image-container');
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-image');
+        const closeBtn = document.getElementById('modal-close-btn');
+
+        let currentIndex = 1;
+        const maxImages = 999;
+        const imagesPerBatch = 5;
+        let loading = false;
+        let stopped = false;
+        const imageCount = 20;
+
+        function loadImage(index) {
+            const img = new Image();
+            img.src = `image/img${index}.jpg`;
+            img.alt = `Ảnh ${index}`;
+
+            img.onload = () => {
+                imageContainer.appendChild(img);
+                img.addEventListener('click', openModal);
+            };
+
+            img.onerror = () => {
+                console.log(`Không tải được ảnh: img${index}.jpg`);
+            };
+        }
+
+        function loadInitialImages() {
+            for (let i = 1; i <= Math.min(imageCount, imagesPerBatch); i++) {
+                loadImage(i);
+                currentIndex++;
+            }
+            ensureScrollable();
+        }
+
+        function loadMoreImages() {
+            if (loading) return;
+            loading = true;
+
+            let imagesLoaded = 0;
+            for (let i = 0; i < imagesPerBatch; i++) {
+                if (currentIndex > imageCount) {
+                    currentIndex = 1;
+                }
+                loadImage(currentIndex);
+                currentIndex++;
+                imagesLoaded++;
+            }
+
+            setTimeout(() => {
+                loading = false;
+                ensureScrollable();
+            }, 300);
+        }
+
+        function ensureScrollable() {
+            if (imageContainer.scrollWidth <= imageContainer.clientWidth && currentIndex <= imageCount) {
+                loadMoreImages();
+            }
+        }
+
+        function openModal() {
+            modalImg.src = this.src;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        closeBtn.onclick = closeModal;
+
+        loadInitialImages();
+
+        imageContainer.addEventListener('scroll', () => {
+            const distanceToRight = imageContainer.scrollWidth - imageContainer.scrollLeft - imageContainer.clientWidth;
+            if (distanceToRight < 300) {
+                loadMoreImages();
+            }
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            fetch('https://formspree.io/f/xnndrarw', {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/thankyou.html';
+                } else {
+                    alert('Gửi thất bại. Vui lòng thử lại sau.');
+                }
+            }).catch(() => {
+                alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+            });
+        });
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function openThongBao() {
+            window.location.href = 'thongbao.html';
+        }
+    </script>
+</body>
+
+</html>

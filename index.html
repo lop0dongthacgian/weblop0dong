@@ -384,7 +384,7 @@
             <p class="text-lg mt-2">Lan tỏa tri thức – Kết nối yêu thương</p>
 
             <div class="scrolling-text-container">
-                <p class="scrolling-text">Lớp vẽ khai giảng lúc 15g00 ngày 07/6/2025 (Thứ bảy) tại 131/4 Lý Thái Tổ, Đà Nẵng!</p>
+                <p class="scrolling-text">Đề phòng dịch Covid 19 trở lại hãy: đeo khẩu trang khi ra khỏi nhà, tại các nơi đông người và trên các phương tiện giao thông công cộng!</p>
             </div>
 
 
@@ -522,8 +522,7 @@
     <section id="contact" class="bg-gray-100 py-12 px-4">
         <div class="max-w-xl mx-auto">
             <h2 class="text-3xl font-bold mb-6 text-center">Liên hệ với chúng tôi</h2>
-            <form id="contact-form" class="space-y-4" action="https://formsubmit.co/lop0dongthacgian@gmail.com"
-                method="POST">
+            <form id="contact-form" class="space-y-4">
                 <input type="text" name="name" placeholder="Họ và tên" required
                     class="w-full border px-4 py-2 rounded" />
                 <input type="email" name="email" placeholder="Email" required
@@ -532,7 +531,6 @@
                     class="w-full border px-4 py-2 rounded" />
                 <textarea name="message" placeholder="Nội dung liên hệ" rows="4" required
                     class="w-full border px-4 py-2 rounded"></textarea>
-                <input type="hidden" name="_subject" value="Liên hệ từ Website Lớp học 0 đồng">
                 <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Gửi</button>
             </form>
         </div>
@@ -628,6 +626,29 @@
                 loadMoreImages();
             }
         });
+
+        // Bắt đầu thay đổi ở đây: Thay thế Formsubmit.co bằng Formspree.io
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            fetch('https://formspree.io/f/xnndrarw', {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/thankyou.html'; // Hoặc hiển thị thông báo thành công
+                } else {
+                    alert('Gửi thất bại. Vui lòng thử lại sau.');
+                }
+            }).catch(() => {
+                alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+            });
+        });
+        // Kết thúc thay đổi
 
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);

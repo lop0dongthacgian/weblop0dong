@@ -274,7 +274,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2rem; /* Add some space from the "Tham gia" boxes */
+            margin-top: 2rem;
+            /* Add some space from the "Tham gia" boxes */
         }
 
         .games-content {
@@ -308,6 +309,7 @@
         .games-content a:hover {
             color: #0d47a1;
         }
+
         /* Scrolling text styles */
         .scrolling-text-container {
             width: 100%;
@@ -385,27 +387,7 @@
             <div class="scrolling-text-container">
                 <p class="scrolling-text">Đề phòng dịch Covid 19 trở lại hãy: đeo khẩu trang khi ra khỏi nhà, tại các nơi đông người và trên các phương tiện giao thông công cộng!</p>
             </div>
-    </style>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8Z2DSRQLL"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-X8Z2DSRQLL');
-    </script>
-
-</head>
-
-<body class="text-gray-800">
-    <header class="bg-blue-600 text-white py-6">
-        <div class="container mx-auto text-center relative">
-            <h1 class="text-4xl font-bold">Lớp học 0 đồng</h1>
-            <p class="text-lg mt-2">Lan tỏa tri thức – Kết nối yêu thương</p>
 
             <button id="menu-toggle" class="lg:hidden absolute top-4 right-4 focus:outline-none">
                 ☰ </button>
@@ -503,11 +485,13 @@
         <div class="max-w-6xl mx-auto">
             <h2 class="text-xl font-bold mb-6 text-center">Bạn có thể tham gia cùng chúng tôi</h2>
             <div class="grid md:grid-cols-3 gap-6 text-center">
-                <div class="bg-yellow-100 p-4 rounded shadow hover:shadow-lg transition" onclick="scrollToSection('contact')">
+                <div class="bg-yellow-100 p-4 rounded shadow hover:shadow-lg transition"
+                    onclick="scrollToSection('contact')">
                     <h3 class="text-base font-semibold mb-2 text-yellow-700">Mạnh Thường Quân</h3>
                     <p class="text-gray-700 text-xs">Hỗ trợ tài chính, học cụ hoặc vật phẩm giúp duy trì lớp học.</p>
                 </div>
-                <div class="bg-green-100 p-4 rounded shadow hover:shadow-lg transition" onclick="scrollToSection('contact')">
+                <div class="bg-green-100 p-4 rounded shadow hover:shadow-lg transition"
+                    onclick="scrollToSection('contact')">
                     <h3 class="text-base font-semibold mb-2 text-green-700">Tình nguyện viên</h3>
                     <p class="text-gray-700 text-xs">Tham gia giảng dạy, tổ chức lớp hoặc hỗ trợ hoạt động.</p>
                 </div>
@@ -518,13 +502,14 @@
                         và nhắn vào nhóm Zalo:
                     </p>
                     <p class="text-gray-700 mt-2">
-                        <a href="https://zalo.me/g/dqjxww462" class="text-blue-600 underline text-xs" target="_blank">Tham gia nhóm Zalo</a>
+                        <a href="https://zalo.me/g/dqjxww462" class="text-blue-600 underline text-xs"
+                            target="_blank">Tham gia nhóm Zalo</a>
                     </p>
                 </div>
             </div>
 
             <div class="games-header" onclick="toggleGames()">
-                <h3 class="text-xl font-bold text-blue-800">Trò chơi tìm hiểu kiến thức</h3>
+                <h3 class="text-xl font-bold text-blue-800">Trò chơi</h3>
                 <span class="arrow text-2xl">></span>
             </div>
             <div id="games-content" class="games-content">
@@ -540,8 +525,10 @@
             <h2 class="text-3xl font-bold mb-6 text-center">Liên hệ với chúng tôi</h2>
             <form id="contact-form" class="space-y-4" action="https://formsubmit.co/lop0dongthacgian@gmail.com"
                 method="POST">
-                <input type="text" name="name" placeholder="Họ và tên" required class="w-full border px-4 py-2 rounded" />
-                <input type="email" name="email" placeholder="Email" required class="w-full border px-4 py-2 rounded" />
+                <input type="text" name="name" placeholder="Họ và tên" required
+                    class="w-full border px-4 py-2 rounded" />
+                <input type="email" name="email" placeholder="Email" required
+                    class="w-full border px-4 py-2 rounded" />
                 <input type="text" name="phone" placeholder="Số điện thoại liên lạc của bạn" required
                     class="w-full border px-4 py-2 rounded" />
                 <textarea name="message" placeholder="Nội dung liên hệ" rows="4" required

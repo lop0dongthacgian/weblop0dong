@@ -326,9 +326,8 @@
             display: inline-block;
             padding-left: 100%;
             /* Bắt đầu từ ngoài cùng bên phải */
-            animation: scroll-left 15s linear infinite;
-            /* Điều chỉnh thời gian để thay đổi tốc độ */
-            font-size: 5.5rem; /* Kích thước chữ lớn mặc định */
+            animation: scroll-left 15s linear infinite; /* Điều chỉnh thời gian để thay đổi tốc độ (giảm 25s xuống 15s) */
+            font-size: 3.5rem; /* Kích thước chữ lớn mặc định (tăng 2.5rem lên 3.5rem) */
             color: red;
             /* Chữ đỏ */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -350,16 +349,16 @@
         /* For screens up to 767px (typical mobile) */
         @media (max-width: 767px) {
             .scrolling-text {
-                font-size: 1.2rem; /* Nhỏ hơn trên điện thoại */
-                animation: scroll-left 18s linear infinite; /* Điều chỉnh tốc độ cho di động */
+                font-size: 1.8rem; /* Nhỏ hơn trên điện thoại (tăng 1.2rem lên 1.8rem) */
+                animation: scroll-left 10s linear infinite; /* Điều chỉnh tốc độ cho di động (giảm 18s xuống 10s) */
             }
         }
 
         /* For screens between 768px and 1023px (typical tablet) */
         @media (min-width: 768px) and (max-width: 1023px) {
             .scrolling-text {
-                font-size: 1.8rem; /* Kích thước trung bình trên máy tính bảng */
-                animation: scroll-left 20s linear infinite; /* Điều chỉnh tốc độ cho máy tính bảng */
+                font-size: 2.5rem; /* Kích thước trung bình trên máy tính bảng (tăng 1.8rem lên 2.5rem) */
+                animation: scroll-left 12s linear infinite; /* Điều chỉnh tốc độ cho máy tính bảng (giảm 20s xuống 12s) */
             }
         }
     </style>
@@ -385,7 +384,7 @@
             <p class="text-lg mt-2">Lan tỏa tri thức – Kết nối yêu thương</p>
 
             <div class="scrolling-text-container">
-                <p class="scrolling-text">Lớp vẽ khai giảng lúc 15g00 ngày 07/6/2025 (Thứ bảy)!</p>
+                <p class="scrolling-text">Lớp vẽ khai giảng lúc 15g00 ngày 07/6/2025 (Thứ bảy) tại 131/4 Lý Thái Tổ, Đà Nẵng!</p>
             </div>
 
 

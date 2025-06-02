@@ -356,6 +356,40 @@
             }
         }
 
+        /* --- STYLES FOR NOTIFICATIONS LINK SECTION --- */
+        .notifications-section { /* Container for the entire notifications block */
+            margin-top: 2rem; /* Space above the notifications section */
+        }
+
+        .notifications-header-link { /* Renamed to avoid conflict if old .notifications-header styles linger or are used elsewhere */
+            cursor: pointer;
+            background-color: #3b82f6; /* Tailwind's blue-500 - A pleasant blue */
+            color: white; /* White text for better contrast on blue */
+            padding: 1rem 1.5rem; /* More padding for a richer look */
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Softer shadow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease; /* Smooth background transition on hover */
+        }
+
+        .notifications-header-link:hover {
+            background-color: #2563eb; /* Tailwind's blue-600 - Darker blue on hover */
+        }
+
+        .notifications-header-link h2 { /* Style for the "Thông báo" title within the header */
+            margin: 0; /* Remove default margin from h2 */
+            font-size: 1.5rem; /* Adjust font size as needed */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Subtle text shadow for depth */
+        }
+
+        .notifications-header-link .arrow {
+            font-size: 1.8rem; /* Style for the arrow */
+            /* No transition needed if it's static */
+        }
+        /* --- END STYLES FOR NOTIFICATIONS LINK SECTION --- */
+
     </style>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8Z2DSRQLL"></script>
@@ -383,12 +417,12 @@
             <button id="menu-toggle" class="lg:hidden absolute top-4 right-4 focus:outline-none">
                 ☰ </button>
 
-            <nav id="main-nav" class=""> <div class="menu-container">
+            <nav id="main-nav" class="">
+                 <div class="menu-container">
                     <span class="menu-icon" onclick="scrollToSection('introduction'); toggleMenu();">Giới thiệu</span>
-                    <span class="menu-icon" onclick="scrollToSection('gallery'); toggleMenu();">Hình ảnh</span>
+                    <span class="menu-icon" onclick="scrollToSection('notifications-section'); toggleMenu();">Thông báo</span>
+                    <span class="menu-icon" onclick="scrollToSection('documents-section'); toggleMenu();">Tài liệu</span> <span class="menu-icon" onclick="scrollToSection('gallery'); toggleMenu();">Hình ảnh</span>
                     <span class="menu-icon" onclick="scrollToSection('participate'); toggleMenu();">Tham gia</span>
-                    <span class="menu-icon" onclick="openThongBao(); toggleMenu();">Thông báo</span>
-                    <span class="menu-icon" onclick="openTaiLieu(); toggleMenu();">Tài liệu</span>
                     </div>
             </nav>
         </div>
@@ -443,6 +477,18 @@
         </div>
     </section>
 
+    <section id="notifications-section" class="notifications-section max-w-5xl mx-auto px-4 py-8">
+        <div class="notifications-header-link" onclick="openThongBaoPage()">
+            <h2>Thông báo</h2>
+            <span class="arrow text-2xl text-white">></span>
+        </div>
+    </section>
+
+    <section id="documents-section" class="notifications-section max-w-5xl mx-auto px-4 py-4">
+        <div class="notifications-header-link" onclick="openGoogleDriveTaiLieu()"> <h2>Tài liệu</h2>
+            <span class="arrow text-2xl text-white">></span>
+        </div>
+    </section>
     <section id="gallery" class="py-12 bg-white">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold mb-4 text-center">Hình ảnh lớp học</h2>
@@ -483,7 +529,7 @@
 
             <div class="games-header" onclick="toggleGames()">
                 <h3 class="text-xl font-bold text-blue-800">Trò chơi</h3>
-                <span class="arrow text-2xl">&gt;</span> </div>
+                <span class="arrow text-2xl">></span> </div>
             <div id="games-content" class="games-content">
                 <a href="https://timhieukienthuc.vercel.app" target="_blank">Tìm hiểu kiến thức</a>
                 <a href="https://binhhoatrithuc.vercel.app" target="_blank">Bình hoa tri thức</a>
@@ -600,47 +646,54 @@
             modal.style.display = 'none'; // Hide the modal
         }
 
-        closeBtn.onclick = closeModal; // Assign the closeModal function to the close button's click event
+        if (closeBtn) { // Check if closeBtn exists
+            closeBtn.onclick = closeModal;
+        }
+
 
         // Load initial images when the page loads
-        loadInitialImages();
+        if (imageContainer) { // Check if imageContainer exists before adding event listeners
+            loadInitialImages();
 
-        // Load more images when scrolling near the end of the container
-        imageContainer.addEventListener('scroll', () => {
-            // Calculate distance to the right end of the scrollable content
-            const distanceToRight = imageContainer.scrollWidth - imageContainer.scrollLeft - imageContainer.clientWidth;
-            if (distanceToRight < 300) { // Load more if less than 300px from the end
-                loadMoreImages();
-            }
-        });
+            imageContainer.addEventListener('scroll', () => {
+                const distanceToRight = imageContainer.scrollWidth - imageContainer.scrollLeft - imageContainer.clientWidth;
+                if (distanceToRight < 300) {
+                    loadMoreImages();
+                }
+            });
+        }
 
 
         // Contact Form Submission using Formspree
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-            const form = e.target;
-            const data = new FormData(form); // Get form data
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                const form = e.target;
+                const data = new FormData(form); // Get form data
 
-            fetch('https://formspree.io/f/xnndrarw', { // Replace with your Formspree endpoint
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    // Redirect to a thank you page or show a success message
-                    window.location.href = '/thankyou.html'; // Create this page or handle success differently
-                } else {
-                    // Handle errors (e.g., show an error message)
-                    alert('Gửi thất bại. Vui lòng thử lại sau.');
-                }
-            }).catch(error => {
-                // Handle network errors
-                alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
-                console.error('Form submission error:', error);
+                fetch('https://formspree.io/f/xnndrarw', { // Replace with your Formspree endpoint
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Redirect to a thank you page or show a success message
+                        window.location.href = '/thankyou.html'; // Create this page or handle success differently
+                    } else {
+                        // Handle errors (e.g., show an error message)
+                        alert('Gửi thất bại. Vui lòng thử lại sau.');
+                    }
+                }).catch(error => {
+                    // Handle network errors
+                    alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+                    console.error('Form submission error:', error);
+                });
             });
-        });
+        }
+
 
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
@@ -649,12 +702,11 @@
             }
         }
 
-        function openThongBao() {
-            window.location.href = 'thongbao.html'; // Assuming thongbao.html is in the same directory
+        function openThongBaoPage() { // Đổi tên từ openThongBao và thay đổi chức năng
+            window.location.href = 'thongbao.html'; // Chuyển hướng đến trang thongbao.html
         }
 
-        function openTaiLieu() {
-            // Replace with your actual Google Drive link
+        function openGoogleDriveTaiLieu() { // Hàm mới cho việc mở Google Drive
             window.open('https://drive.google.com/drive/folders/1-1zHIxVF-LtD3LpOaOKorUaHshm8mLF_', '_blank');
         }
 
@@ -676,9 +728,11 @@
         // --- COLLAPSIBLE GAMES JAVASCRIPT ---
         function toggleGames() {
             const gamesContent = document.getElementById('games-content');
-            const gamesHeader = document.querySelector('.games-header'); // Get the header to toggle class on it for arrow rotation
-            gamesContent.classList.toggle('open');
-            gamesHeader.classList.toggle('open'); // Toggle class on header as well
+            const gamesHeader = document.querySelector('.games-header');
+            if (gamesContent && gamesHeader) {
+                gamesContent.classList.toggle('open');
+                gamesHeader.classList.toggle('open');
+            }
         }
         // --- END COLLAPSIBLE GAMES JAVASCRIPT ---
 

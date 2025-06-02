@@ -12,7 +12,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 90, 0, 0.85);
+            /* Nền caro đậm hơn nữa */
+            background-image: linear-gradient(65deg, rgba(240, 240, 240, 1) 25%, transparent 30%, transparent 70%, rgba(240, 240, 240, 1) 75%, rgba(240, 240, 240, 1)),
+                              linear-gradient(45deg, rgba(240, 240, 240, 1) 25%, transparent 30%, transparent 70%, rgba(240, 240, 240, 1) 75%, rgba(240, 240, 240, 1));
+            background-size: 20px 20px; /* Kích thước của mỗi ô caro */
+            background-position: 0 0, 10px 10px; /* Vị trí của các ô caro để tạo hiệu ứng */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,6 +38,11 @@
             font-weight: bold; /* In đậm */
             font-size: 2.25rem; /* Kích thước chữ to hơn */
             margin-bottom: 15px; /* Thêm khoảng cách dưới tiêu đề */
+            color: #228B22; /* Màu xanh lục cho tiêu đề */
+        }
+
+        #thong-bao-content p {
+            color: #228B22; /* Màu xanh lục cho các đoạn văn bản */
         }
 
         #close-thong-bao {
@@ -50,13 +59,13 @@
         <div id="thong-bao-content">
             <span id="close-thong-bao">&times;</span>
             <h2>THÔNG BÁO:</h2>
-<p>Chiều chủ nhật 01/6/2025 đã là buổi học cuối của lớp nhỏ tiếng Anh khoá III - năm học 2025</p>
-<p>Các cháu chính thức nghỉ hè từ bây giờ!</p>
-<p>Phụ huynh cần tài liệu học hè,
-nhờ thầy cô chữa bài hoặc có bất kỳ câu hỏi nào...</p>
-<p>Vui lòng nhắn vào nhóm zalo, đội ngũ thầy cô sẽ hỗ trợ.</p>
-<p>Hẹn gặp lại quý vị trong thời gian tới - Xin cảm ơn!</p>
-<p>📌 Phụ huynh cần thêm thông tin hoặc mong muốn đăng ký các khoá học mới vui lòng truy cập website của lớp:</p>
+            <p>Chiều chủ nhật 01/6/2025 đã là buổi học cuối của lớp nhỏ tiếng Anh khoá III - năm học 2025</p>
+            <p>Các cháu chính thức nghỉ hè từ bây giờ!</p>
+            <p>Phụ huynh cần tài liệu học hè,
+            nhờ thầy cô chữa bài hoặc có bất kỳ câu hỏi nào...</p>
+            <p>Vui lòng nhắn vào nhóm zalo, đội ngũ thầy cô sẽ hỗ trợ.</p>
+            <p>Hẹn gặp lại quý vị trong thời gian tới - Xin cảm ơn!</p>
+            <p>📌 Phụ huynh cần thêm thông tin hoặc mong muốn đăng ký các khoá học mới vui lòng truy cập website của lớp:</p>
             <p>👉 <a href="https://weblop0dong.vercel.app">https://weblop0dong.vercel.app</a></p>
         </div>
     </div>

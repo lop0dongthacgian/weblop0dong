@@ -358,7 +358,7 @@
 
         /* --- STYLES FOR NOTIFICATIONS LINK SECTION --- */
         .notifications-section { /* Container for the entire notifications block */
-            margin-top: 2rem; /* Space above the notifications section */
+            margin-top: 0.5rem; /* Space above the notifications section - Adjusted */
         }
 
         .notifications-header-link { /* Renamed to avoid conflict if old .notifications-header styles linger or are used elsewhere */
@@ -421,7 +421,8 @@
                  <div class="menu-container">
                     <span class="menu-icon" onclick="scrollToSection('introduction'); toggleMenu();">Giới thiệu</span>
                     <span class="menu-icon" onclick="scrollToSection('notifications-section'); toggleMenu();">Thông báo</span>
-                    <span class="menu-icon" onclick="scrollToSection('documents-section'); toggleMenu();">Tài liệu</span> <span class="menu-icon" onclick="scrollToSection('gallery'); toggleMenu();">Hình ảnh</span>
+                    <span class="menu-icon" onclick="openTaiLieu(); toggleMenu();">Tài liệu</span>
+                    <span class="menu-icon" onclick="scrollToSection('gallery'); toggleMenu();">Hình ảnh</span>
                     <span class="menu-icon" onclick="scrollToSection('participate'); toggleMenu();">Tham gia</span>
                     </div>
             </nav>
@@ -477,15 +478,14 @@
         </div>
     </section>
 
-    <section id="notifications-section" class="notifications-section max-w-5xl mx-auto px-4 py-8">
-        <div class="notifications-header-link" onclick="openThongBaoPage()">
+    <section id="notifications-section" class="notifications-section max-w-5xl mx-auto px-4 py-4"> <div class="notifications-header-link" onclick="openThongBaoPage()">
             <h2>Thông báo</h2>
             <span class="arrow text-2xl text-white">></span>
         </div>
     </section>
 
     <section id="documents-section" class="notifications-section max-w-5xl mx-auto px-4 py-4">
-        <div class="notifications-header-link" onclick="openGoogleDriveTaiLieu()"> <h2>Tài liệu</h2>
+        <div class="notifications-header-link" onclick="openTaiLieu()"> <h2>Tài liệu</h2>
             <span class="arrow text-2xl text-white">></span>
         </div>
     </section>
@@ -706,7 +706,8 @@
             window.location.href = 'thongbao.html'; // Chuyển hướng đến trang thongbao.html
         }
 
-        function openGoogleDriveTaiLieu() { // Hàm mới cho việc mở Google Drive
+        function openTaiLieu() {
+            // Replace with your actual Google Drive link
             window.open('https://drive.google.com/drive/folders/1-1zHIxVF-LtD3LpOaOKorUaHshm8mLF_', '_blank');
         }
 

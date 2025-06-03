@@ -404,6 +404,12 @@
 </head>
 
 <body class="text-gray-800">
+
+<audio id="gioiThieuAudio" src="gioithieu.wav"></audio>
+<button id="stopAudioBtn" onclick="stopGioiThieuAudio()" class="fixed top-4 right-4 bg-red-600 text-white px-3 py-1 rounded hidden z-50">
+    Tắt giới thiệu
+</button>
+
     <header class="bg-blue-600 text-white py-6">
         <div class="container mx-auto text-center relative">
             <h1 class="text-4xl font-bold">Lớp học 0 đồng</h1>
@@ -419,7 +425,7 @@
 
             <nav id="main-nav" class="">
                  <div class="menu-container">
-                    <span class="menu-icon" onclick="scrollToSection('introduction'); toggleMenu();">Giới thiệu</span>
+                    <span class="menu-icon" onclick="playGioiThieu(); scrollToSection('introduction'); toggleMenu();">Giới thiệu</span>
                     <span class="menu-icon" onclick="scrollToSection('notifications-section'); toggleMenu();">Thông báo</span>
                     <span class="menu-icon" onclick="openTaiLieu(); toggleMenu();">Tài liệu</span>
                     <span class="menu-icon" onclick="scrollToSection('gallery'); toggleMenu();">Hình ảnh</span>
@@ -430,7 +436,7 @@
     </header>
 
     <section id="introduction" class="py-12 px-4 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-4 text-center">Giới thiệu</h2>
+        <h2 class="text-3xl font-bold mb-4 text-center cursor-pointer" onclick="playGioiThieu()">Giới thiệu</h2>
         <div class="mb-6">
             <p class="mb-4 text-justify">
                 <span class="font-semibold">Lớp học 0 đồng</span> tại kiệt 131 Lý Thái Tổ, phường Thạc Gián, quận Thanh Khê, thành phố Đà Nẵng đã hoạt động hơn 3 năm, dạy miễn phí cho trẻ em có hoàn cảnh khó khăn.
@@ -737,6 +743,28 @@
         }
         // --- END COLLAPSIBLE GAMES JAVASCRIPT ---
 
-    </script>
+    
+    function playGioiThieu() {
+        const audio = document.getElementById('gioiThieuAudio');
+        const stopBtn = document.getElementById('stopAudioBtn');
+
+        if (audio) {
+            audio.currentTime = 0;
+            audio.play().catch(e => console.warn('Không thể phát âm thanh:', e));
+        }
+
+        if (stopBtn) {
+            stopBtn.classList.remove('hidden');
+        }
+    }
+
+    function stopGioiThieuAudio() {
+        const audio = document.getElementById('gioiThieuAudio');
+        const stopBtn = document.getElementById('stopAudioBtn');
+        if (audio) audio.pause();
+        if (stopBtn) stopBtn.classList.add('hidden');
+    }
+
+</script>
 </body>
 </html>

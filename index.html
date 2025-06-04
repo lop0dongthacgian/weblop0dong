@@ -555,6 +555,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold mb-4 text-center">Hình ảnh lớp học</h2>
             <div id="image-container">
+                <!-- Hình ảnh sẽ được thêm bằng JavaScript -->
             </div>
             <div id="image-modal">
                 <img id="modal-image" src="" alt="Ảnh phóng to">
@@ -647,79 +648,70 @@
     </footer>
 
     <script>
+        // ============== FIXED GALLERY ISSUE ==============
+        // Gallery functionality
         const imageContainer = document.getElementById('image-container');
         const modal = document.getElementById('image-modal');
         const modalImg = document.getElementById('modal-image');
         const closeBtn = document.getElementById('modal-close-btn');
-
+        
+        // Chỉ số ảnh hiện tại, bắt đầu từ 1
         let currentIndex = 1;
-        const maxImages = 999;
-        const imagesPerBatch = 5;
-        let loading = false;
-        let stopped = false;
+        // Tổng số ảnh (cần cập nhật đúng với số ảnh bạn có)
         const imageCount = 29;
-
+        
+        // Hàm tải một ảnh
         function loadImage(index) {
-            const img = new Image();
+            // Tạo thẻ img
+            const img = document.createElement('img');
+            // Đặt đường dẫn
             img.src = `image/img${index}.jpg`;
             img.alt = `Ảnh ${index}`;
-
-            img.onload = () => {
-                imageContainer.appendChild(img);
-                img.addEventListener('click', openModal);
-            };
-
-            img.onerror = () => {
-                console.log(`Không tải được ảnh: img${index}.jpg`);
+            
+            // Thêm class style (nếu cần, nhưng đã có trong CSS)
+            // Thêm sự kiện click để mở modal
+            img.addEventListener('click', function() {
+                modalImg.src = this.src;
+                modal.style.display = 'flex';
+            });
+            
+            // Thêm vào container
+            imageContainer.appendChild(img);
+            
+            // Xử lý lỗi
+            img.onerror = function() {
+                console.error(`Không tải được ảnh: image/img${index}.jpg`);
+                // Ẩn ảnh nếu không tải được
+                this.style.display = 'none';
             };
         }
-
-        function loadInitialImages() {
-            for (let i = 1; i <= Math.min(imageCount, imagesPerBatch); i++) {
+        
+        // Tải tất cả ảnh
+        function loadAllImages() {
+            for (let i = 1; i <= imageCount; i++) {
                 loadImage(i);
-                currentIndex++;
-            }
-            ensureScrollable();
-        }
-
-        function loadMoreImages() {
-            if (loading) return;
-            loading = true;
-
-            let imagesLoaded = 0;
-            for (let i = 0; i < imagesPerBatch; i++) {
-                if (currentIndex > imageCount) {
-                    currentIndex = 1;
-                }
-                loadImage(currentIndex);
-                currentIndex++;
-                imagesLoaded++;
-            }
-
-            setTimeout(() => {
-                loading = false;
-                ensureScrollable();
-            }, 300);
-        }
-
-        function ensureScrollable() {
-            if (imageContainer.scrollWidth <= imageContainer.clientWidth && currentIndex <= imageCount) {
-                loadMoreImages();
             }
         }
-
-        function openModal() {
-            modalImg.src = this.src;
-            modal.style.display = 'flex';
+        
+        // Gọi hàm tải ảnh khi trang được tải
+        if (imageContainer) {
+            loadAllImages();
         }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
+        
+        // Đóng modal
         if (closeBtn) {
-            closeBtn.onclick = closeModal;
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            };
         }
+        
+        // Đóng modal khi click bên ngoài ảnh
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        // ============== END GALLERY FIX ==============
 
         // Contact Form Submission using Formspree
         const contactForm = document.getElementById('contact-form');

@@ -11,7 +11,6 @@
         body {
             background-color: #e0f7fa;
             background-image: url('path/to/your/pattern.png');
-            /* Bạn có thể thay đổi path/to/your/pattern.png thành đường dẫn thực tế nếu có ảnh pattern */
             background-size: cover;
             background-attachment: fixed;
         }
@@ -32,9 +31,7 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            /* Allow wrapping */
             gap: 0.5rem;
-            /* Gap between items */
             width: 100%;
         }
 
@@ -44,42 +41,32 @@
             border-radius: 0.25rem;
             text-align: center;
             flex-shrink: 0;
-            /* Prevent shrinking */
             flex-grow: 0;
-            /* Prevent growing */
             box-sizing: border-box;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.2s ease-in-out;
             color: #333;
-            /* Default text color */
             position: relative;
-            /* For dropdown positioning */
         }
 
         .menu-icon:hover {
             transform: translateY(-2px);
             background-color: #7CFC00;
-            /* Hover color */
         }
 
-        /* Default for smallest screens (1 item/row) */
         .menu-icon {
             width: calc(100% - 1rem);
-            /* Width including container padding */
             font-size: 0.85rem;
             padding: 0.3rem 0.6rem;
             margin: 0 0.5rem;
-            /* Add horizontal margin for balance with container padding */
         }
 
         .menu-container {
             padding: 0;
-            /* Remove padding here, let item margin handle it */
         }
 
-        /* Dropdown menu styles (no longer needed for main nav, but kept for reference if user wants to re-add) */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -87,9 +74,7 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 10;
-            /* Tăng z-index để đảm bảo hiển thị trên các phần tử khác */
             top: 100%;
-            /* Định vị ngay bên dưới mục cha */
             left: 0;
             border-radius: 0.25rem;
             overflow: hidden;
@@ -111,104 +96,74 @@
             display: block;
         }
 
-
-        /* Control visibility of main menu when hamburger is present */
         #main-nav {
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             max-height: 0;
-            /* Hidden by default on small screens */
             overflow: hidden;
             opacity: 0;
-            /* Faded out */
             flex-direction: column;
-            /* Stack items vertically when open on mobile */
             align-items: center;
             width: 100%;
         }
 
         #main-nav.open {
             max-height: 300px;
-            /* Sufficient height to contain all items when open */
             opacity: 1;
-            /* Fully visible */
             display: flex;
-            /* Display as flex */
         }
 
-        /* Hamburger button */
         #menu-toggle {
             display: block;
-            /* Display by default on mobile */
             background: none;
             border: none;
             color: white;
             font-size: 2rem;
-            /* Hamburger icon size */
             cursor: pointer;
             z-index: 20;
         }
 
         /* Responsive adjustments */
-
-        /* For tablet screens (768px to 1023px) - 2 items/row */
         @media (min-width: 768px) and (max-width: 1023px) {
             #main-nav.open .menu-container {
-                /* When menu is open on tablet */
                 flex-direction: row;
-                /* Arrange items in a row */
                 justify-content: center;
             }
 
             .menu-icon {
                 width: calc(50% - 0.25rem);
-                /* 2 items/row: (100% - 1*gap) / 2 */
                 font-size: 0.9rem;
                 padding: 0.35rem 0.7rem;
                 margin: 0 0.5rem;
-                /* Maintain margin */
             }
         }
 
-        /* For desktop screens (1024px and up) - 3 items/row and always visible */
         @media (min-width: 1024px) {
             #main-nav {
                 max-height: none;
-                /* Remove height limit */
                 opacity: 1;
-                /* Always fully visible */
                 display: flex !important;
-                /* Always display flex */
                 flex-direction: row;
-                /* Arrange horizontally */
                 margin-top: 1rem;
-                /* Spacing from title */
             }
 
             #menu-toggle {
                 display: none;
-                /* Hide hamburger button on desktop */
             }
 
             .menu-container {
                 flex-direction: row;
-                /* Ensure horizontal arrangement */
                 justify-content: center;
                 margin-top: 0;
-                /* Reset margin from previous media queries */
             }
 
             .menu-icon {
                 width: calc(33.33% - 0.3333rem);
-                /* 3 items/row: (100% - 2*gap) / 3 */
                 font-size: 0.95rem;
                 padding: 0.4rem 0.8rem;
                 margin: 0 0.5rem;
-                /* Maintain margin */
             }
         }
-
         /* --- END MENU HAMBURGER STYLES --- */
-
 
         #image-container {
             display: flex;
@@ -248,7 +203,6 @@
             align-items: center;
             z-index: 1000;
             display: none;
-            /* Hidden by default */
         }
 
         #modal-image {
@@ -270,7 +224,6 @@
         .games-header {
             cursor: pointer;
             background-color: #e0f7fa;
-            /* Light blue, consistent with body */
             padding: 1rem;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
@@ -279,7 +232,6 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 2rem;
-            /* Add some space from the "Tham gia" boxes */
         }
 
         .games-content {
@@ -287,14 +239,11 @@
             overflow: hidden;
             transition: max-height 0.3s ease-out;
             padding: 0 1rem;
-            /* Padding for content when open */
         }
 
         .games-content.open {
             max-height: 200px;
-            /* Adjust as needed to fit content */
             padding-bottom: 1rem;
-            /* Padding at the bottom when open */
         }
 
         .games-header .arrow {
@@ -309,43 +258,32 @@
             display: block;
             padding: 0.5rem 0;
             color: #1a73e8;
-            /* Blue link color */
             text-decoration: underline;
         }
 
         .games-content a:hover {
             color: #0d47a1;
-            /* Darker blue on hover */
         }
-
 
         /* Scrolling text styles */
         .scrolling-text-container {
             width: 100%;
             overflow: hidden;
             background-color: transparent;
-            /* Changed from light yellow to transparent */
             padding: 0.5rem 0;
             margin-top: 1rem;
-            /* Space from the paragraph above */
             white-space: nowrap;
             box-sizing: border-box;
             position: relative;
-            /* Needed for absolute positioning of text if required, or for pseudo-elements */
         }
 
         .scrolling-text {
             display: inline-block;
             padding-left: 100%;
-            /* Start from outside the right edge */
             animation: scroll-left 15s linear infinite;
-            /* Adjust time to change speed (25s down to 15s) */
             font-size: 3.5rem;
-            /* Default large font size (2.5rem up to 3.5rem) */
             color: red;
-            /* Red text */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            /* Drop shadow */
             font-weight: bold;
         }
 
@@ -353,118 +291,141 @@
             0% {
                 transform: translateX(0%);
             }
-
             100% {
                 transform: translateX(-100%);
-                /* Move completely to the left */
             }
         }
 
         /* Responsive adjustments for smaller screens */
-        /* For screens up to 767px (typical mobile) */
         @media (max-width: 767px) {
             .scrolling-text {
                 font-size: 1.8rem;
-                /* Smaller on mobile (1.2rem up to 1.8rem) */
                 animation: scroll-left 10s linear infinite;
-                /* Adjust speed for mobile (18s down to 10s) */
             }
         }
 
-        /* For screens between 768px and 1023px (typical tablet) */
         @media (min-width: 768px) and (max-width: 1023px) {
             .scrolling-text {
                 font-size: 2.5rem;
-                /* Medium size on tablets (1.8rem up to 2.5rem) */
                 animation: scroll-left 12s linear infinite;
-                /* Adjust speed for tablets (20s down to 12s) */
             }
         }
 
         /* --- STYLES FOR NOTIFICATIONS LINK SECTION --- */
         .notifications-section {
-            /* Container for the entire notifications block */
             margin-top: 0.5rem;
-            /* Space above the notifications section - Adjusted */
         }
 
         .notifications-header-link {
-            /* Renamed to avoid conflict if old .notifications-header styles linger or are used elsewhere */
             cursor: pointer;
             background-color: #3b82f6;
-            /* Tailwind's blue-500 - A pleasant blue */
             color: white;
-            /* White text for better contrast on blue */
             padding: 1rem 1.5rem;
-            /* More padding for a richer look */
             border-radius: 0.5rem;
-            /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            /* Softer shadow */
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: background-color 0.3s ease;
-            /* Smooth background transition on hover */
         }
 
         .notifications-header-link:hover {
             background-color: #2563eb;
-            /* Tailwind's blue-600 - Darker blue on hover */
         }
 
         .notifications-header-link h2 {
-            /* Style for the "Thông báo" title within the header */
             margin: 0;
-            /* Remove default margin from h2 */
             font-size: 1.5rem;
-            /* Adjust font size as needed */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            /* Subtle text shadow for depth */
         }
 
         .notifications-header-link .arrow {
             font-size: 1.8rem;
-            /* Style for the arrow */
-            /* No transition needed if it's static */
         }
-
         /* --- END STYLES FOR NOTIFICATIONS LINK SECTION --- */
 
-        /* --- NEW, IMPROVED FOOTER STYLES --- */
+        /* =================== FOOTER STYLES =================== */
+        footer {
+            padding: 1.5rem 0;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1rem; /* Adjust space between icons */
-            margin-top: 1.5rem;
-            flex-wrap: nowrap; /* Ensure icons always stay on one line */
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
         }
 
         .footer-link {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            color: #9ca3af; /* Default icon color (gray-400) */
+            color: #9ca3af;
             text-decoration: none;
-            width: 44px;  /* Set a fixed width */
-            height: 44px; /* Set a fixed height */
-            border-radius: 50%; /* Makes the link circular */
-            background-color: #374151; /* A bit lighter than footer background (gray-700) */
-            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #374151;
+            transition: all 0.3s ease;
         }
 
         .footer-link i {
-            font-size: 1.25rem; /* Increase the size of the icon itself */
+            font-size: 1rem;
         }
 
         .footer-link:hover {
-            color: #ffffff; /* White icon on hover */
-            background-color: #3b82f6; /* Blue background on hover, matching theme */
-            transform: translateY(-3px); /* Add a slight lift effect on hover */
+            color: #ffffff;
+            background-color: #3b82f6;
+            transform: translateY(-2px);
         }
-        /* --- END OF NEW FOOTER STYLES --- */
 
+        .footer-labels {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .footer-labels span {
+            font-size: 0.7rem;
+            color: #d1d5db;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .footer-links {
+                gap: 0.5rem;
+            }
+            
+            .footer-link {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .footer-labels span {
+                font-size: 0.65rem;
+                min-width: 50px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .footer-links {
+                gap: 0.6rem;
+            }
+        }
+        /* =================== END FOOTER STYLES =================== */
     </style>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8Z2DSRQLL"></script>
@@ -475,11 +436,9 @@
 
         gtag('config', 'G-X8Z2DSRQLL');
     </script>
-
 </head>
 
 <body class="text-gray-800">
-
     <audio id="gioiThieuAudio" src="gioithieu.mp3"></audio>
     <button id="stopAudioBtn" onclick="stopGioiThieuAudio()"
         class="fixed top-4 right-4 bg-red-600 text-white px-3 py-1 rounded hidden z-50">
@@ -496,7 +455,6 @@
                     đài vinh quang để sánh vai với các cường quốc năm châu được hay không, chính là nhờ một phần lớn ở
                     công học tập của các em!</p>
             </div>
-
 
             <button id="menu-toggle" class="lg:hidden absolute top-4 right-4 focus:outline-none">
                 ☰ </button>
@@ -664,61 +622,55 @@
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-6 text-center">
-        <p>© 2025 Lớp học 0 đồng - Kết nối yêu thương</p>
-        <div class="footer-links flex-col space-y-2">
-    <div class="flex justify-center gap-6">
-        <a href="mailto:lop0dongthacgian@gmail.com" class="footer-link" aria-label="Gửi Email">
-            <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61559950363983" target="_blank" class="footer-link" aria-label="Xem Facebook">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://youtube.com/@lophoc0dong" target="_blank" class="footer-link" aria-label="Xem YouTube">
-            <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://zalo.me/g/iiwcck776" target="_blank" class="footer-link" aria-label="Tham gia nhóm Zalo">
-            <i class="fas fa-comment-dots"></i>
-        </a>
-    </div>
-    <div class="flex justify-center gap-10 text-sm text-gray-300">
-        <span>Email</span>
-        <span>Facebook</span>
-        <span>YouTube</span>
-        <span>Zalo</span>
-    </div>
-</div>
-
+    <footer class="bg-gray-800 text-white py-4 text-center">
+        <p class="text-sm">© 2025 Lớp học 0 đồng - Kết nối yêu thương</p>
+        <div class="footer-links">
+            <a href="mailto:lop0dongthacgian@gmail.com" class="footer-link" aria-label="Gửi Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61559950363983" target="_blank" class="footer-link" aria-label="Xem Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://youtube.com/@lophoc0dong" target="_blank" class="footer-link" aria-label="Xem YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://zalo.me/g/iiwcck776" target="_blank" class="footer-link" aria-label="Tham gia nhóm Zalo">
+                <i class="fas fa-comment-dots"></i>
+            </a>
+        </div>
+        <div class="footer-labels">
+            <span>Email</span>
+            <span>Facebook</span>
+            <span>YouTube</span>
+            <span>Zalo</span>
+        </div>
     </footer>
+
     <script>
         const imageContainer = document.getElementById('image-container');
         const modal = document.getElementById('image-modal');
         const modalImg = document.getElementById('modal-image');
         const closeBtn = document.getElementById('modal-close-btn');
 
-        let currentIndex = 1; // Start loading from img1.jpg
-        const maxImages = 999; // A high number, effectively infinite for practical purposes unless you have this many images
-        const imagesPerBatch = 5; // Load 5 images at a time
-        let loading = false; // Flag to prevent multiple simultaneous loads
-        let stopped = false; // Flag to stop loading if an error occurs consistently (optional)
-        const imageCount = 29; /* IMPORTANT: Adjust this to the actual number of images you have in the image/ folder */
-
+        let currentIndex = 1;
+        const maxImages = 999;
+        const imagesPerBatch = 5;
+        let loading = false;
+        let stopped = false;
+        const imageCount = 29;
 
         function loadImage(index) {
             const img = new Image();
-            // Assuming images are named img1.jpg, img2.jpg, etc., and are in an 'image' folder
             img.src = `image/img${index}.jpg`;
             img.alt = `Ảnh ${index}`;
-            // img.className = 'w-80 h-48 object-cover rounded shadow-lg cursor-pointer'; // Tailwind classes
 
             img.onload = () => {
                 imageContainer.appendChild(img);
-                img.addEventListener('click', openModal); // Add click listener to open modal
+                img.addEventListener('click', openModal);
             };
 
             img.onerror = () => {
                 console.log(`Không tải được ảnh: img${index}.jpg`);
-                // Optionally, set 'stopped = true;' if you want to stop trying after an error
             };
         }
 
@@ -727,22 +679,16 @@
                 loadImage(i);
                 currentIndex++;
             }
-            ensureScrollable(); // Call to load more if needed to make it scrollable initially
+            ensureScrollable();
         }
 
-
         function loadMoreImages() {
-            if (loading) return; // Prevent multiple loads if already loading
+            if (loading) return;
             loading = true;
 
             let imagesLoaded = 0;
             for (let i = 0; i < imagesPerBatch; i++) {
-                if (currentIndex > imageCount) { // If we've loaded all available images
-                    // Option 1: Stop loading
-                    // loading = false;
-                    // return;
-
-                    // Option 2: Loop back to the first image
+                if (currentIndex > imageCount) {
                     currentIndex = 1;
                 }
                 loadImage(currentIndex);
@@ -750,59 +696,40 @@
                 imagesLoaded++;
             }
 
-            // Using a small timeout to allow DOM to update before resetting loading flag
             setTimeout(() => {
                 loading = false;
-                ensureScrollable(); // Check again if more images are needed to fill the view
-            }, 300); // Adjust timeout as needed
+                ensureScrollable();
+            }, 300);
         }
 
-
-        // Ensure the container is scrollable by loading more images if it's not
         function ensureScrollable() {
-            // If the scrollable width is not greater than the client width, and we haven't loaded all images
             if (imageContainer.scrollWidth <= imageContainer.clientWidth && currentIndex <= imageCount) {
                 loadMoreImages();
             }
         }
 
-
         function openModal() {
-            modalImg.src = this.src; // Set the source of the modal image to the clicked image
-            modal.style.display = 'flex'; // Show the modal
+            modalImg.src = this.src;
+            modal.style.display = 'flex';
         }
 
         function closeModal() {
-            modal.style.display = 'none'; // Hide the modal
+            modal.style.display = 'none';
         }
 
-        if (closeBtn) { // Check if closeBtn exists
+        if (closeBtn) {
             closeBtn.onclick = closeModal;
         }
-
-
-        // Load initial images when the page loads
-        if (imageContainer) { // Check if imageContainer exists before adding event listeners
-            loadInitialImages();
-
-            imageContainer.addEventListener('scroll', () => {
-                const distanceToRight = imageContainer.scrollWidth - imageContainer.scrollLeft - imageContainer.clientWidth;
-                if (distanceToRight < 300) {
-                    loadMoreImages();
-                }
-            });
-        }
-
 
         // Contact Form Submission using Formspree
         const contactForm = document.getElementById('contact-form');
         if (contactForm) {
             contactForm.addEventListener('submit', function (e) {
-                e.preventDefault(); // Prevent default form submission
+                e.preventDefault();
                 const form = e.target;
-                const data = new FormData(form); // Get form data
+                const data = new FormData(form);
 
-                fetch('https://formspree.io/f/xnndrarw', { // Replace with your Formspree endpoint
+                fetch('https://formspree.io/f/xnndrarw', {
                     method: 'POST',
                     body: data,
                     headers: {
@@ -810,20 +737,16 @@
                     }
                 }).then(response => {
                     if (response.ok) {
-                        // Redirect to a thank you page or show a success message
-                        window.location.href = '/thankyou.html'; // Create this page or handle success differently
+                        window.location.href = '/thankyou.html';
                     } else {
-                        // Handle errors (e.g., show an error message)
                         alert('Gửi thất bại. Vui lòng thử lại sau.');
                     }
                 }).catch(error => {
-                    // Handle network errors
                     alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
                     console.error('Form submission error:', error);
                 });
             });
         }
-
 
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
@@ -832,15 +755,13 @@
             }
         }
 
-        function openThongBaoPage() { // Đổi tên từ openThongBao và thay đổi chức năng
-            window.location.href = 'thongbao.html'; // Chuyển hướng đến trang thongbao.html
+        function openThongBaoPage() {
+            window.location.href = 'thongbao.html';
         }
 
         function openTaiLieu() {
-            // Replace with your actual Google Drive link
             window.open('https://drive.google.com/drive/folders/1-1zHIxVF-LtD3LpOaOKorUaHshm8mLF_', '_blank');
         }
-
 
         // --- HAMBURGER MENU JAVASCRIPT ---
         function toggleMenu() {
@@ -854,7 +775,6 @@
                 menuToggle.addEventListener('click', toggleMenu);
             }
         });
-        // --- END HAMBURGER MENU JAVASCRIPT ---
 
         // --- COLLAPSIBLE GAMES JAVASCRIPT ---
         function toggleGames() {
@@ -865,8 +785,6 @@
                 gamesHeader.classList.toggle('open');
             }
         }
-        // --- END COLLAPSIBLE GAMES JAVASCRIPT ---
-
 
         function playGioiThieu() {
             const audio = document.getElementById('gioiThieuAudio');
@@ -888,8 +806,6 @@
             if (audio) audio.pause();
             if (stopBtn) stopBtn.classList.add('hidden');
         }
-
     </script>
 </body>
-
 </html>

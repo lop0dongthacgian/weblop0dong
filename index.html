@@ -480,7 +480,7 @@
                 <div class="menu-container">
                     <span class="menu-icon"
                         onclick="playGioiThieu(); scrollToSection('introduction'); toggleMenu();">Giới thiệu</span>
-                    <span class="menu-icon" onclick="scrollToSection('notifications-section'); toggleMenu();">Thông
+                    <span class="menu-icon" onclick="openThongBaoPage(); toggleMenu();">Thông
                         báo</span>
                     <span class="menu-icon" onclick="openTaiLieu(); toggleMenu();">Tài liệu</span>
                     <span class="menu-icon" onclick="scrollToSection('gallery'); toggleMenu();">Hình ảnh</span>
@@ -833,5 +833,27 @@
             if (stopBtn) stopBtn.classList.add('hidden');
         }
     </script>
+
+<script>
+    // === TỰ CUỘN ẢNH TỪNG TẤM MỘT ===
+    const container = document.getElementById('image-container');
+    let scrollInterval;
+
+    function autoScrollImages() {
+        const scrollStep = container.querySelector('img')?.offsetWidth + 16 || 320; // chiều rộng + khoảng cách
+        scrollInterval = setInterval(() => {
+            if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+                container.scrollLeft = 0;
+            } else {
+                container.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            }
+        }, 2000); // Dừng 2 giây
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(autoScrollImages, 1000); // Đợi ảnh tải xong mới cuộn
+    });
+</script>
+
 </body>
 </html>

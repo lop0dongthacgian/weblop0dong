@@ -426,7 +426,24 @@
             }
         }
         /* =================== END FOOTER STYLES =================== */
-    </style>
+    
+#image-container-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+#image-container {
+    display: flex;
+    width: max-content;
+    animation: scrollGallery 60s linear infinite;
+}
+
+@keyframes scrollGallery {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+</style>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8Z2DSRQLL"></script>
     <script>
@@ -554,9 +571,9 @@
     <section id="gallery" class="py-12 bg-white">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold mb-4 text-center">Hình ảnh lớp học</h2>
-            <div id="image-container">
+            <div id="image-container-wrapper"><div id="image-container">
                 <!-- Hình ảnh sẽ được thêm bằng JavaScript -->
-            </div>
+            </div></div>
             <div id="image-modal">
                 <img id="modal-image" src="" alt="Ảnh phóng to">
                 <button id="modal-close-btn">×</button>
@@ -623,29 +640,37 @@
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-4 text-center">
-        <p class="text-sm">© 2025 Lớp học 0 đồng - Kết nối yêu thương</p>
-        <div class="footer-links">
-            <a href="mailto:lop0dongthacgian@gmail.com" class="footer-link" aria-label="Gửi Email">
+    
+<footer class="bg-gray-800 text-white py-4 text-center">
+    <p class="text-sm mb-2">© 2025 Lớp học 0 đồng - Kết nối yêu thương</p>
+    <div class="flex justify-center flex-wrap gap-4">
+        <div class="flex flex-col items-center text-sm text-gray-300">
+            <a href="mailto:lop0dongthacgian@gmail.com" class="footer-link mb-1" aria-label="Gửi Email">
                 <i class="fas fa-envelope"></i>
             </a>
-            <a href="https://www.facebook.com/profile.php?id=61559950363983" target="_blank" class="footer-link" aria-label="Xem Facebook">
+            <span>Email</span>
+        </div>
+        <div class="flex flex-col items-center text-sm text-gray-300">
+            <a href="https://www.facebook.com/profile.php?id=61559950363983" target="_blank" class="footer-link mb-1" aria-label="Xem Facebook">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://youtube.com/@lophoc0dong" target="_blank" class="footer-link" aria-label="Xem YouTube">
+            <span>Facebook</span>
+        </div>
+        <div class="flex flex-col items-center text-sm text-gray-300">
+            <a href="https://youtube.com/@lophoc0dong" target="_blank" class="footer-link mb-1" aria-label="Xem YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://zalo.me/g/iiwcck776" target="_blank" class="footer-link" aria-label="Tham gia nhóm Zalo">
+            <span>YouTube</span>
+        </div>
+        <div class="flex flex-col items-center text-sm text-gray-300">
+            <a href="https://zalo.me/g/iiwcck776" target="_blank" class="footer-link mb-1" aria-label="Tham gia nhóm Zalo">
                 <i class="fas fa-comment-dots"></i>
             </a>
-        </div>
-        <div class="footer-labels">
-            <span>Email</span>
-            <span>Facebook</span>
-            <span>YouTube</span>
             <span>Zalo</span>
         </div>
-    </footer>
+    </div>
+</footer>
+
 
     <script>
         // ============== FIXED GALLERY ISSUE ==============
@@ -688,6 +713,9 @@
         
         // Tải tất cả ảnh
         function loadAllImages() {
+            for (let i = 1; i <= imageCount; i++) {
+                loadImage(i);
+            }
             for (let i = 1; i <= imageCount; i++) {
                 loadImage(i);
             }

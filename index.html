@@ -165,32 +165,6 @@
         }
         /* --- END MENU HAMBURGER STYLES --- */
 
-        #image-container {
-            display: flex;
-            overflow-x: auto;
-            overflow-y: hidden;
-            gap: 1rem;
-            scroll-snap-type: x mandatory;
-            padding: 1rem 0;
-            scroll-padding: 1rem;
-        }
-
-        #image-container img {
-            flex-shrink: 0;
-            width: 20rem;
-            height: 12rem;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            scroll-snap-align: start;
-            transition: transform 0.2s ease-in-out;
-            cursor: pointer;
-        }
-
-        #image-container img:hover {
-            transform: scale(1.05);
-        }
-
         #image-modal {
             position: fixed;
             top: 0;
@@ -427,21 +401,71 @@
         }
         /* =================== END FOOTER STYLES =================== */
     
-#image-container-wrapper {
-    overflow: hidden;
-    position: relative;
-}
+        /* ========== NEW FILM STRIP GALLERY STYLES (UPDATED) ========== */
+        #image-container-wrapper {
+            overflow: hidden;
+            position: relative;
+            padding: 25px 0; /* Điều chỉnh lại padding cho phù hợp */
+            background-color: #2c3e50;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
 
-#image-container {
-    display: flex;
-    width: max-content;
-    animation: scrollGallery 60s linear infinite;
-}
+        #image-container-wrapper::before,
+        #image-container-wrapper::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 8px; /* Giảm chiều cao của dải phim */
+            /* Tạo các lỗ nhỏ và dày hơn */
+            background-image: repeating-linear-gradient(
+                90deg,
+                #2c3e50,               /* Phần đặc của dải phim */
+                #2c3e50 12px,          /* Rộng 12px */
+                #e0f7fa 12px,          /* Phần lỗ (màu nền trang) */
+                #e0f7fa 18px           /* Rộng 6px (18-12=6) */
+            );
+            background-size: 18px 4px; /* Kích thước mẫu: rộng 18px (cả lỗ và đặc), cao 4px (chiều cao lỗ) */
+            background-position: center;
+        }
 
-@keyframes scrollGallery {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+        #image-container-wrapper::before {
+            top: 9px;
+        }
+
+        #image-container-wrapper::after {
+            bottom: 9px;
+        }
+
+        #image-container {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scrollGallery 80s linear infinite;
+        }
+        
+        #image-container img {
+            flex-shrink: 0;
+            width: 20rem;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        #image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes scrollGallery {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* ========== END FILM STRIP GALLERY STYLES ========== */
+
 
 </style>
 
@@ -575,10 +599,11 @@
 
     <section id="gallery" class="py-12 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4 text-center">Hình ảnh lớp học</h2>
-            <div id="image-container-wrapper"><div id="image-container">
-                <!-- Hình ảnh sẽ được thêm bằng JavaScript -->
-            </div></div>
+            <h2 class="text-3xl font-bold mb-8 text-center">Hình ảnh lớp học</h2>
+            <div id="image-container-wrapper">
+                <div id="image-container">
+                </div>
+            </div>
             <div id="image-modal">
                 <img id="modal-image" src="" alt="Ảnh phóng to">
                 <button id="modal-close-btn">×</button>
@@ -678,73 +703,64 @@
 
 
     <script>
-        // ============== FIXED GALLERY ISSUE ==============
-        // Gallery functionality
+        // ============== GALLERY SCRIPT ==============
         const imageContainer = document.getElementById('image-container');
         const modal = document.getElementById('image-modal');
         const modalImg = document.getElementById('modal-image');
         const closeBtn = document.getElementById('modal-close-btn');
         
-        // Chỉ số ảnh hiện tại, bắt đầu từ 1
-        let currentIndex = 1;
-        // Tổng số ảnh (cần cập nhật đúng với số ảnh bạn có)
-        const imageCount = 29;
+        const imageCount = 29; // Tổng số ảnh bạn có trong thư mục /image
         
         // Hàm tải một ảnh
         function loadImage(index) {
-            // Tạo thẻ img
             const img = document.createElement('img');
-            // Đặt đường dẫn
             img.src = `image/img${index}.jpg`;
             img.alt = `Ảnh ${index}`;
             
-            // Thêm class style (nếu cần, nhưng đã có trong CSS)
-            // Thêm sự kiện click để mở modal
             img.addEventListener('click', function() {
                 modalImg.src = this.src;
                 modal.style.display = 'flex';
             });
             
-            // Thêm vào container
             imageContainer.appendChild(img);
             
-            // Xử lý lỗi
             img.onerror = function() {
                 console.error(`Không tải được ảnh: image/img${index}.jpg`);
-                // Ẩn ảnh nếu không tải được
                 this.style.display = 'none';
             };
         }
         
-        // Tải tất cả ảnh
+        // Tải tất cả ảnh và nhân đôi chúng để tạo hiệu ứng cuộn liền mạch
         function loadAllImages() {
             for (let i = 1; i <= imageCount; i++) {
                 loadImage(i);
             }
+            // Thêm bản sao của các ảnh vào cuối để lấp đầy khoảng trống khi cuộn
             for (let i = 1; i <= imageCount; i++) {
                 loadImage(i);
             }
         }
         
-        // Gọi hàm tải ảnh khi trang được tải
         if (imageContainer) {
             loadAllImages();
         }
         
-        // Đóng modal
+        // Đóng modal khi nhấn nút X
         if (closeBtn) {
             closeBtn.onclick = function() {
                 modal.style.display = 'none';
             };
         }
         
-        // Đóng modal khi click bên ngoài ảnh
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-        // ============== END GALLERY FIX ==============
+        // Đóng modal khi click ra ngoài ảnh
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        // ============== END GALLERY SCRIPT ==============
 
         // Contact Form Submission using Formspree
         const contactForm = document.getElementById('contact-form');

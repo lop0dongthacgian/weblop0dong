@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông báo</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    #thong-bao-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('nenthd.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    #thong-bao-content {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    #thong-bao-content h2 {
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: #228B22;
+      text-align: center;
+      text-decoration: underline;
+      margin-bottom: 1.25rem;
+    }
+
+    #thong-bao-content p {
+      color: #228B22;
+      margin-bottom: 0.5rem;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    /* CSS cho thư viện ảnh cuộn ngang */
+    .image-gallery {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap; /* Ngăn ảnh xuống dòng */
+      padding-bottom: 1rem; /* Tạo khoảng trống cho thanh cuộn */
+      -webkit-overflow-scrolling: touch; /* Cho phép cuộn mượt trên iOS */
+    }
+
+    .image-gallery img {
+      height: 200px; /* Chiều cao cố định cho ảnh */
+      width: auto; /* Chiều rộng tự động điều chỉnh */
+      margin-right: 1rem; /* Khoảng cách giữa các ảnh */
+      border-radius: 0.5rem; /* Bo góc ảnh */
+      flex-shrink: 0; /* Ngăn ảnh bị co lại */
+    }
+
+    /* Tùy chỉnh thanh cuộn (tùy chọn) */
+    .image-gallery::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .image-gallery::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .image-gallery::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .image-gallery::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div id="thong-bao-modal">
+    <div id="thong-bao-content">
+      <p>🎨 Lúc 15giờ00, ngày 07/6/2025 * đã khai giảng lớp vẽ hè 2025</p>
+      <p>dành cho học sinh Cấp 1 & Cấp 2.</p>
+      <p>🕒 Thời gian học: 15h30 – 17h00 chiều thứ Bảy hàng tuần</p>
+      <p>📆 Lịch học: Từ tháng 6 đến trước khai giảng năm học mới</p>
+      <p>💰 Học phí: MIỄN PHÍ 100%</p>
+      <p>📷 Hình ảnh khai giảng lớp vẽ:</p>
+
+      <div class="image-gallery">
+        <img src="image1/v1.jpg" alt="Hình ảnh lớp học 1">
+        <img src="image1/v2.jpg" alt="Hình ảnh lớp học 2">
+        <img src="image1/v3.jpg" alt="Hình ảnh lớp học 3">
+        <img src="image1/v4.jpg" alt="Hình ảnh lớp học 4">
+        <img src="image1/v5.jpg" alt="Hình ảnh lớp học 5">
+        <img src="image1/v6.jpg" alt="Hình ảnh lớp học 6">
+        <img src="image1/v7.jpg" alt="Hình ảnh lớp học 7">
+        <img src="image1/v8.jpg" alt="Hình ảnh lớp học 8">
+        <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9">
+        <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10">
+      </div>
+      <p>👉 <a href="https://weblop0dong.vercel.app" class="text-blue-600 underline">https://weblop0dong.vercel.app</a></p>
+
+      <div class="button-container">
+        <button id="close-thong-bao"
+          class="px-4 py-2 bg-green-600 text-white text-base font-semibold rounded-full shadow hover:bg-green-700 transition">
+          Trở lại trang chủ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('close-thong-bao').addEventListener('click', function () {
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

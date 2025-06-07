@@ -147,6 +147,33 @@
         justify-content: center;
         width: 100%;
     }
+
+    /* New styles for the close button within the full image view */
+    .close-full-image {
+      position: absolute;
+      top: 15px; /* Tăng lên một chút */
+      right: 15px; /* Dịch vào một chút */
+      color: #FFF; /* Màu trắng cho dễ nhìn */
+      background-color: rgba(0, 0, 0, 0.5); /* Nền đen mờ để nổi bật hơn */
+      border-radius: 50%; /* Bo tròn thành hình tròn */
+      width: 35px; /* Kích thước nút */
+      height: 35px; /* Kích thước nút */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px; /* Tăng kích thước font */
+      font-weight: bold;
+      cursor: pointer;
+      display: none; /* Hidden by default */
+      z-index: 10; /* Đảm bảo nút nằm trên ảnh */
+    }
+
+    .close-full-image:hover,
+    .close-full-image:focus {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.8); /* Đậm hơn khi hover */
+      text-decoration: none;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -206,6 +233,7 @@
 
   <div id="image-viewer-modal">
     <div id="image-viewer-content">
+      <span class="close-full-image" id="close-full-image-btn">&times;</span>
       <img id="full-image" src="" alt="Ảnh phóng to">
       <div class="viewer-buttons">
         <button id="download-image" class="download-button">Xem ảnh đầy đủ</button>
@@ -226,6 +254,7 @@
     const closeImageViewerBtn = document.getElementById('close-image-viewer');
     const viewFullImageBtn = document.getElementById('download-image');
     const viewerButtons = document.querySelector('.viewer-buttons');
+    const closeFullImageBtn = document.getElementById('close-full-image-btn'); // New close button
 
     const originalImageCount = 10;
     let singleGalleryWidth = 0;
@@ -319,6 +348,7 @@
         imageViewerModal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Prevent body scrolling
         viewerButtons.style.display = 'flex';
+        closeFullImageBtn.style.display = 'none'; // Hide the full image close button initially
         fullImage.style.maxWidth = '100%';
         fullImage.style.maxHeight = '70vh';
       });
@@ -330,6 +360,7 @@
       imageGallery.style.overflowX = 'auto'; // Re-enable manual scroll
       document.body.style.overflow = ''; // Allow body scrolling
       viewerButtons.style.display = 'flex';
+      closeFullImageBtn.style.display = 'none'; // Ensure it's hidden when closing modal
       fullImage.style.maxWidth = '100%';
       fullImage.style.maxHeight = '70vh';
     });
@@ -337,9 +368,19 @@
     // Event listener for "Xem ảnh đầy đủ" button
     viewFullImageBtn.addEventListener('click', function() {
       viewerButtons.style.display = 'none';
+      closeFullImageBtn.style.display = 'flex'; // Show the new close button
       fullImage.style.maxWidth = '95%';
       fullImage.style.maxHeight = '95vh';
     });
+
+    // Event listener for the new "X" button to return from full screen
+    closeFullImageBtn.addEventListener('click', function() {
+      viewerButtons.style.display = 'flex'; // Show the original buttons again
+      closeFullImageBtn.style.display = 'none'; // Hide this close button
+      fullImage.style.maxWidth = '100%'; // Revert image size
+      fullImage.style.maxHeight = '70vh'; // Revert image size
+    });
+
 
     // Initial scroll position when the page loads
     window.addEventListener('load', () => {

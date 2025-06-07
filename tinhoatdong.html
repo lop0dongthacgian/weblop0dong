@@ -57,11 +57,10 @@
     .image-gallery {
       display: flex;
       overflow-x: auto; /* Cho phép cuộn ngang bằng tay */
-      /* white-space: nowrap; // Không cần thiết khi dùng flex và cuộn ngang */
       padding-bottom: 1rem;
       -webkit-overflow-scrolling: touch;
       position: relative;
-      /* Remove animation-related styles as we're handling manually */
+      cursor: grab; /* Thêm con trỏ kéo */
     }
 
     .image-gallery img {
@@ -71,7 +70,6 @@
       border-radius: 0.5rem;
       flex-shrink: 0; /* Quan trọng để ảnh không bị co lại */
       cursor: pointer;
-      /* Remove animation property */
     }
 
     /* Tùy chỉnh thanh cuộn (tùy chọn) */
@@ -171,7 +169,29 @@
         <img src="image1/V7.jpg" alt="Hình ảnh lớp học 7">
         <img src="image1/V8.jpg" alt="Hình ảnh lớp học 8">
         <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9">
-        <img src="image1/v10.jpg"alt="Hình ảnh lớp học 10">
+        <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10">
+
+        <img src="image1/V1.jpg" alt="Hình ảnh lớp học 1">
+        <img src="image1/V2.jpg" alt="Hình ảnh lớp học 2">
+        <img src="image1/V3.jpg" alt="Hình ảnh lớp học 3">
+        <img src="image1/V4.jpg" alt="Hình ảnh lớp học 4">
+        <img src="image1/V5.jpg" alt="Hình ảnh lớp học 5">
+        <img src="image1/V6.jpg" alt="Hình ảnh lớp học 6">
+        <img src="image1/V7.jpg" alt="Hình ảnh lớp học 7">
+        <img src="image1/V8.jpg" alt="Hình ảnh lớp học 8">
+        <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9">
+        <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10">
+
+        <img src="image1/V1.jpg" alt="Hình ảnh lớp học 1">
+        <img src="image1/V2.jpg" alt="Hình ảnh lớp học 2">
+        <img src="image1/V3.jpg" alt="Hình ảnh lớp học 3">
+        <img src="image1/V4.jpg" alt="Hình ảnh lớp học 4">
+        <img src="image1/V5.jpg" alt="Hình ảnh lớp học 5">
+        <img src="image1/V6.jpg" alt="Hình ảnh lớp học 6">
+        <img src="image1/V7.jpg" alt="Hình ảnh lớp học 7">
+        <img src="image1/V8.jpg" alt="Hình ảnh lớp học 8">
+        <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9">
+        <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10">
       </div>
       <p>👉 <a href="https://weblop0dong.vercel.app" class="text-blue-600 underline">https://weblop0dong.vercel.app</a></p>
 
@@ -204,85 +224,131 @@
     const imageViewerModal = document.getElementById('image-viewer-modal');
     const fullImage = document.getElementById('full-image');
     const closeImageViewerBtn = document.getElementById('close-image-viewer');
-    const viewFullImageBtn = document.getElementById('download-image'); // Đổi tên biến cho rõ ràng
+    const viewFullImageBtn = document.getElementById('download-image');
     const viewerButtons = document.querySelector('.viewer-buttons');
 
-    // Để xử lý cuộn vòng lặp, chúng ta cần biết chiều rộng của một bộ ảnh gốc
-    // Giả định tất cả ảnh có cùng chiều rộng hoặc ít nhất là phần hiển thị của chúng
-    const originalImageCount = 10; // Số lượng ảnh gốc không lặp lại
-    let singleGalleryWidth = 0; // Sẽ được tính sau khi DOM tải xong
+    const originalImageCount = 10;
+    let singleGalleryWidth = 0;
+    let isDragging = false;
+    let startX;
+    let scrollLeft;
 
-    // Gán sự kiện click cho từng ảnh trong thư viện
+    // Calculate the width of the original set of images
+    const calculateGalleryWidth = () => {
+        singleGalleryWidth = 0;
+        // Calculate based on the first 'originalImageCount' images (which is the first cloned set)
+        for (let i = 0; i < originalImageCount; i++) {
+            singleGalleryWidth += images[i].offsetWidth;
+            singleGalleryWidth += parseFloat(getComputedStyle(images[i]).marginRight);
+        }
+    };
+
+    // Event listeners for drag to scroll (mouse)
+    imageGallery.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      imageGallery.style.cursor = 'grabbing';
+      startX = e.pageX - imageGallery.offsetLeft;
+      scrollLeft = imageGallery.scrollLeft;
+    });
+
+    imageGallery.addEventListener('mouseleave', () => {
+      isDragging = false;
+      imageGallery.style.cursor = 'grab';
+    });
+
+    imageGallery.addEventListener('mouseup', () => {
+      isDragging = false;
+      imageGallery.style.cursor = 'grab';
+    });
+
+    imageGallery.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - imageGallery.offsetLeft;
+      const walk = (x - startX) * 1.5; // Adjusted scroll speed
+      imageGallery.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch events for mobile devices
+    imageGallery.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX - imageGallery.offsetLeft;
+      scrollLeft = imageGallery.scrollLeft;
+    });
+
+    imageGallery.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    imageGallery.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const x = e.touches[0].pageX - imageGallery.offsetLeft;
+      const walk = (x - startX) * 1.5; // Adjusted scroll speed
+      imageGallery.scrollLeft = scrollLeft - walk;
+    });
+
+
+    // Loop scrolling logic for 3 sets of images
+    imageGallery.addEventListener('scroll', function() {
+        if (singleGalleryWidth === 0) {
+            calculateGalleryWidth();
+        }
+
+        // If scrolled past the original set (into the first cloned set)
+        if (imageGallery.scrollLeft >= singleGalleryWidth * 2) {
+            // Jump back to the start of the original set
+            imageGallery.scrollLeft = singleGalleryWidth;
+        }
+        // If scrolled backwards before the original set (into the last cloned set)
+        else if (imageGallery.scrollLeft < singleGalleryWidth) {
+            if (imageGallery.scrollLeft <= 0) { // If scrolled completely to the start of the last cloned set
+                // Jump to the start of the second cloned set (which is effectively the last part of the loop)
+                imageGallery.scrollLeft = singleGalleryWidth * 2;
+            }
+        }
+    });
+
+    // Event listener for opening image viewer
     images.forEach(img => {
       img.addEventListener('click', function() {
-        // Tạm dừng cuộn tay (nếu có thể, mặc dù đã ẩn thanh cuộn)
-        imageGallery.style.overflowX = 'hidden'; 
+        // Prevent accidental looping while modal is open
+        imageGallery.style.overflowX = 'hidden';
 
-        // Hiển thị modal và đặt ảnh nguồn
         const imgSrc = this.getAttribute('src');
         fullImage.src = imgSrc;
         imageViewerModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Ngăn cuộn body khi modal mở
-        viewerButtons.style.display = 'flex'; // Đảm bảo các nút hiển thị khi mở ảnh lần đầu
-        fullImage.style.maxWidth = '100%'; 
+        document.body.style.overflow = 'hidden'; // Prevent body scrolling
+        viewerButtons.style.display = 'flex';
+        fullImage.style.maxWidth = '100%';
         fullImage.style.maxHeight = '70vh';
       });
     });
 
-    // Xử lý nút đóng modal xem ảnh
+    // Event listener for closing image viewer
     closeImageViewerBtn.addEventListener('click', function() {
       imageViewerModal.style.display = 'none';
-      imageGallery.style.overflowX = 'auto'; // Cho phép cuộn thủ công trở lại
-      document.body.style.overflow = ''; 
-      viewerButtons.style.display = 'flex'; // Đảm bảo các nút hiển thị lại
-      fullImage.style.maxWidth = '100%'; 
+      imageGallery.style.overflowX = 'auto'; // Re-enable manual scroll
+      document.body.style.overflow = ''; // Allow body scrolling
+      viewerButtons.style.display = 'flex';
+      fullImage.style.maxWidth = '100%';
       fullImage.style.maxHeight = '70vh';
     });
 
-    // Xử lý nút "Xem ảnh đầy đủ"
+    // Event listener for "Xem ảnh đầy đủ" button
     viewFullImageBtn.addEventListener('click', function() {
-      viewerButtons.style.display = 'none'; // Ẩn div chứa các nút
-      
-      // Phóng to ảnh trong modal
-      fullImage.style.maxWidth = '95%'; 
-      fullImage.style.maxHeight = '95vh'; 
+      viewerButtons.style.display = 'none';
+      fullImage.style.maxWidth = '95%';
+      fullImage.style.maxHeight = '95vh';
     });
 
-    // Logic cuộn vòng lặp thủ công
-    imageGallery.addEventListener('scroll', function() {
-        if (singleGalleryWidth === 0 && images[0]) {
-            // Tính toán chiều rộng của một bộ ảnh gốc (10 ảnh + khoảng cách)
-            // Lấy chiều rộng của 10 ảnh đầu tiên
-            for (let i = 0; i < originalImageCount; i++) {
-                singleGalleryWidth += images[i].offsetWidth;
-                singleGalleryWidth += parseFloat(getComputedStyle(images[i]).marginRight);
-            }
-        }
-
-        // Nếu đã cuộn đến cuối của bộ ảnh gốc thứ hai (tức là bộ lặp đầu tiên đã kết thúc)
-        // thì nhảy về vị trí đầu của bộ ảnh gốc đầu tiên (sau ảnh gốc)
-        if (imageGallery.scrollLeft >= singleGalleryWidth * 2) {
-            imageGallery.scrollLeft = singleGalleryWidth; // Nhảy về vị trí đầu của bản sao đầu tiên
-        } 
-        // Nếu cuộn ngược lại về đầu của bản sao đầu tiên (trước ảnh gốc)
-        else if (imageGallery.scrollLeft <= 0) {
-            imageGallery.scrollLeft = singleGalleryWidth * 2; // Nhảy về vị trí đầu của bản sao thứ hai
-        }
-    });
-
-    // Khi trang tải xong, đảm bảo cuộn tới vị trí bắt đầu của bộ ảnh lặp lại thứ nhất
-    // để người dùng cuộn cả về hai phía đều có ảnh
+    // Initial scroll position when the page loads
     window.addEventListener('load', () => {
         if (images.length > 0) {
-             let initialScrollPos = 0;
-             for (let i = 0; i < originalImageCount; i++) {
-                initialScrollPos += images[i].offsetWidth;
-                initialScrollPos += parseFloat(getComputedStyle(images[i]).marginRight);
-            }
-            imageGallery.scrollLeft = initialScrollPos; // Bắt đầu ở vị trí bản sao đầu tiên
+             calculateGalleryWidth();
+             // Start at the beginning of the original image set (the middle set)
+             imageGallery.scrollLeft = singleGalleryWidth;
         }
     });
-
   </script>
 </body>
 </html>

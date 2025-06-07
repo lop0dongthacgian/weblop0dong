@@ -56,33 +56,22 @@
     /* CSS cho thư viện ảnh cuộn ngang */
     .image-gallery {
       display: flex;
-      overflow: hidden; /* Ẩn phần thừa khi cuộn */
-      white-space: nowrap;
+      overflow-x: auto; /* Cho phép cuộn ngang bằng tay */
+      /* white-space: nowrap; // Không cần thiết khi dùng flex và cuộn ngang */
       padding-bottom: 1rem;
       -webkit-overflow-scrolling: touch;
-      position: relative; /* Đặt vị trí tương đối để animation hoạt động */
+      position: relative;
+      /* Remove animation-related styles as we're handling manually */
     }
 
     .image-gallery img {
-      height: 200px; /* Chiều cao cố định cho ảnh */
-      width: auto; /* Chiều rộng tự động điều chỉnh */
-      margin-right: 1rem; /* Khoảng cách giữa các ảnh */
-      border-radius: 0.5rem; /* Bo góc ảnh */
-      flex-shrink: 0; /* Ngăn ảnh bị co lại */
-      animation: scrollImages 10s linear infinite; /* Animation cuộn vô hạn, tốc độ nhanh hơn */
-      cursor: pointer; /* Cho biết ảnh có thể nhấp được */
-    }
-
-    /* Tạm dừng animation khi hover hoặc khi ảnh đang phóng to */
-    .image-gallery:hover img,
-    .image-gallery.paused img {
-        animation-play-state: paused;
-    }
-
-    /* Keyframes cho animation cuộn */
-    @keyframes scrollImages {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
+      height: 200px;
+      width: auto;
+      margin-right: 1rem;
+      border-radius: 0.5rem;
+      flex-shrink: 0; /* Quan trọng để ảnh không bị co lại */
+      cursor: pointer;
+      /* Remove animation property */
     }
 
     /* Tùy chỉnh thanh cuộn (tùy chọn) */
@@ -108,13 +97,13 @@
     #image-viewer-modal {
       display: none; /* Mặc định ẩn */
       position: fixed;
-      z-index: 1001; /* Đảm bảo nằm trên các phần tử khác */
+      z-index: 1001;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0,0,0,0.8); /* Nền tối mờ */
+      background-color: rgba(0,0,0,0.8);
       justify-content: center;
       align-items: center;
     }
@@ -134,10 +123,10 @@
 
     #image-viewer-content img {
       max-width: 100%;
-      max-height: 70vh; /* Giới hạn chiều cao để nút không bị đẩy xuống quá xa */
+      max-height: 70vh;
       display: block;
       margin-bottom: 1rem;
-      object-fit: contain; /* Đảm bảo ảnh không bị méo */
+      object-fit: contain;
     }
 
     .close-button, .download-button {
@@ -183,6 +172,7 @@
         <img src="image1/v8.jpg" alt="Hình ảnh lớp học 8">
         <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9">
         <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10">
+        
         <img src="image1/v1.jpg" alt="Hình ảnh lớp học 1 (lặp lại)">
         <img src="image1/v2.jpg" alt="Hình ảnh lớp học 2 (lặp lại)">
         <img src="image1/v3.jpg" alt="Hình ảnh lớp học 3 (lặp lại)">
@@ -193,6 +183,28 @@
         <img src="image1/v8.jpg" alt="Hình ảnh lớp học 8 (lặp lại)">
         <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9 (lặp lại)">
         <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10 (lặp lại)">
+
+        <img src="image1/v1.jpg" alt="Hình ảnh lớp học 1 (lặp lại 2)">
+        <img src="image1/v2.jpg" alt="Hình ảnh lớp học 2 (lặp lại 2)">
+        <img src="image1/v3.jpg" alt="Hình ảnh lớp học 3 (lặp lại 2)">
+        <img src="image1/v4.jpg" alt="Hình ảnh lớp học 4 (lặp lại 2)">
+        <img src="image1/v5.jpg" alt="Hình ảnh lớp học 5 (lặp lại 2)">
+        <img src="image1/v6.jpg" alt="Hình ảnh lớp học 6 (lặp lại 2)">
+        <img src="image1/v7.jpg" alt="Hình ảnh lớp học 7 (lặp lại 2)">
+        <img src="image1/v8.jpg" alt="Hình ảnh lớp học 8 (lặp lại 2)">
+        <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9 (lặp lại 2)">
+        <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10 (lặp lại 2)">
+
+        <img src="image1/v1.jpg" alt="Hình ảnh lớp học 1 (lặp lại 3)">
+        <img src="image1/v2.jpg" alt="Hình ảnh lớp học 2 (lặp lại 3)">
+        <img src="image1/v3.jpg" alt="Hình ảnh lớp học 3 (lặp lại 3)">
+        <img src="image1/v4.jpg" alt="Hình ảnh lớp học 4 (lặp lại 3)">
+        <img src="image1/v5.jpg" alt="Hình ảnh lớp học 5 (lặp lại 3)">
+        <img src="image1/v6.jpg" alt="Hình ảnh lớp học 6 (lặp lại 3)">
+        <img src="image1/v7.jpg" alt="Hình ảnh lớp học 7 (lặp lại 3)">
+        <img src="image1/v8.jpg" alt="Hình ảnh lớp học 8 (lặp lại 3)">
+        <img src="image1/v9.jpg" alt="Hình ảnh lớp học 9 (lặp lại 3)">
+        <img src="image1/v10.jpg" alt="Hình ảnh lớp học 10 (lặp lại 3)">
       </div>
       <p>👉 <a href="https://weblop0dong.vercel.app" class="text-blue-600 underline">https://weblop0dong.vercel.app</a></p>
 
@@ -209,7 +221,7 @@
     <div id="image-viewer-content">
       <img id="full-image" src="" alt="Ảnh phóng to">
       <div class="viewer-buttons">
-        <button id="download-image" class="download-button">Tải về</button>
+        <button id="download-image" class="download-button">Xem ảnh đầy đủ</button>
         <button id="close-image-viewer" class="close-button">Đóng</button>
       </div>
     </div>
@@ -225,50 +237,85 @@
     const imageViewerModal = document.getElementById('image-viewer-modal');
     const fullImage = document.getElementById('full-image');
     const closeImageViewerBtn = document.getElementById('close-image-viewer');
-    const downloadImageBtn = document.getElementById('download-image');
-    const viewerButtons = document.querySelector('.viewer-buttons'); // Thêm dòng này để lấy thẻ div chứa các nút
+    const viewFullImageBtn = document.getElementById('download-image'); // Đổi tên biến cho rõ ràng
+    const viewerButtons = document.querySelector('.viewer-buttons');
+
+    // Để xử lý cuộn vòng lặp, chúng ta cần biết chiều rộng của một bộ ảnh gốc
+    // Giả định tất cả ảnh có cùng chiều rộng hoặc ít nhất là phần hiển thị của chúng
+    const originalImageCount = 10; // Số lượng ảnh gốc không lặp lại
+    let singleGalleryWidth = 0; // Sẽ được tính sau khi DOM tải xong
 
     // Gán sự kiện click cho từng ảnh trong thư viện
     images.forEach(img => {
       img.addEventListener('click', function() {
-        // Tạm dừng cuộn ảnh
-        imageGallery.classList.add('paused');
-        imageGallery.style.overflowX = 'hidden'; // Ngăn cuộn thủ công khi ảnh đang phóng to
+        // Tạm dừng cuộn tay (nếu có thể, mặc dù đã ẩn thanh cuộn)
+        imageGallery.style.overflowX = 'hidden'; 
 
         // Hiển thị modal và đặt ảnh nguồn
         const imgSrc = this.getAttribute('src');
         fullImage.src = imgSrc;
-        imageViewerModal.style.display = 'flex'; // Hiển thị modal
+        imageViewerModal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Ngăn cuộn body khi modal mở
         viewerButtons.style.display = 'flex'; // Đảm bảo các nút hiển thị khi mở ảnh lần đầu
+        fullImage.style.maxWidth = '100%'; 
+        fullImage.style.maxHeight = '70vh';
       });
     });
 
     // Xử lý nút đóng modal xem ảnh
     closeImageViewerBtn.addEventListener('click', function() {
-      imageViewerModal.style.display = 'none'; // Ẩn modal
-      imageGallery.classList.remove('paused'); // Tiếp tục cuộn ảnh
+      imageViewerModal.style.display = 'none';
       imageGallery.style.overflowX = 'auto'; // Cho phép cuộn thủ công trở lại
-      document.body.style.overflow = ''; // Cho phép cuộn body trở lại
+      document.body.style.overflow = ''; 
+      viewerButtons.style.display = 'flex'; // Đảm bảo các nút hiển thị lại
+      fullImage.style.maxWidth = '100%'; 
+      fullImage.style.maxHeight = '70vh';
     });
 
-    // Xử lý nút tải về ảnh (thay đổi chức năng)
-    downloadImageBtn.addEventListener('click', function() {
-      // Khi nhấn "Tải về", chỉ hiển thị ảnh và ẩn các nút
-      viewerButtons.style.display = 'none'; // Ẩn div chứa các nút "Tải về" và "Đóng"
-      // Ảnh đã được hiển thị trong fullImage.src, không cần thao tác thêm
+    // Xử lý nút "Xem ảnh đầy đủ"
+    viewFullImageBtn.addEventListener('click', function() {
+      viewerButtons.style.display = 'none'; // Ẩn div chứa các nút
+      
+      // Phóng to ảnh trong modal
+      fullImage.style.maxWidth = '95%'; 
+      fullImage.style.maxHeight = '95vh'; 
     });
 
-    // Đóng modal khi click ra ngoài (ngoài nội dung modal)
-    imageViewerModal.addEventListener('click', function(event) {
-      if (event.target === imageViewerModal) {
-        imageViewerModal.style.display = 'none';
-        imageGallery.classList.remove('paused');
-        imageGallery.style.overflowX = 'auto';
-        document.body.style.overflow = '';
-        viewerButtons.style.display = 'flex'; // Đảm bảo các nút hiển thị lại khi đóng modal bằng cách click ra ngoài
-      }
+    // Logic cuộn vòng lặp thủ công
+    imageGallery.addEventListener('scroll', function() {
+        if (singleGalleryWidth === 0 && images[0]) {
+            // Tính toán chiều rộng của một bộ ảnh gốc (10 ảnh + khoảng cách)
+            // Lấy chiều rộng của 10 ảnh đầu tiên
+            for (let i = 0; i < originalImageCount; i++) {
+                singleGalleryWidth += images[i].offsetWidth;
+                singleGalleryWidth += parseFloat(getComputedStyle(images[i]).marginRight);
+            }
+        }
+
+        // Nếu đã cuộn đến cuối của bộ ảnh gốc thứ hai (tức là bộ lặp đầu tiên đã kết thúc)
+        // thì nhảy về vị trí đầu của bộ ảnh gốc đầu tiên (sau ảnh gốc)
+        if (imageGallery.scrollLeft >= singleGalleryWidth * 2) {
+            imageGallery.scrollLeft = singleGalleryWidth; // Nhảy về vị trí đầu của bản sao đầu tiên
+        } 
+        // Nếu cuộn ngược lại về đầu của bản sao đầu tiên (trước ảnh gốc)
+        else if (imageGallery.scrollLeft <= 0) {
+            imageGallery.scrollLeft = singleGalleryWidth * 2; // Nhảy về vị trí đầu của bản sao thứ hai
+        }
     });
+
+    // Khi trang tải xong, đảm bảo cuộn tới vị trí bắt đầu của bộ ảnh lặp lại thứ nhất
+    // để người dùng cuộn cả về hai phía đều có ảnh
+    window.addEventListener('load', () => {
+        if (images.length > 0) {
+             let initialScrollPos = 0;
+             for (let i = 0; i < originalImageCount; i++) {
+                initialScrollPos += images[i].offsetWidth;
+                initialScrollPos += parseFloat(getComputedStyle(images[i]).marginRight);
+            }
+            imageGallery.scrollLeft = initialScrollPos; // Bắt đầu ở vị trí bản sao đầu tiên
+        }
+    });
+
   </script>
 </body>
 </html>

@@ -661,22 +661,17 @@
         </section>
 
         <section id="contact" class="bg-gray-100 py-12 px-4">
-            <div class="max-w-xl mx-auto">
-                <h2 class="text-3xl font-bold mb-6 text-center">Liên hệ với chúng tôi</h2>
-                <form id="contact-form" class="space-y-4">
-                    <input type="text" name="name" placeholder="Họ và tên" required
-                        class="w-full border px-4 py-2 rounded" />
-                    <input type="email" name="email" placeholder="Email" required
-                        class="w-full border px-4 py-2 rounded" />
-                    <input type="text" name="phone" placeholder="Số điện thoại liên lạc của bạn" required
-                        class="w-full border px-4 py-2 rounded" />
-                    <textarea name="message" placeholder="Nội dung liên hệ" rows="4" required
-                        class="w-full border px-4 py-2 rounded"></textarea>
-                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Gửi</button>
-                </form>
+            <div class="max-w-xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">Liên hệ với chúng tôi</h2>
+                <p class="mb-8 text-gray-700">
+                    Nếu bạn có bất kỳ câu hỏi nào, muốn đăng ký làm tình nguyện viên, hoặc muốn đóng góp cho lớp học, xin vui lòng gửi tin nhắn cho chúng tôi.
+                </p>
+                <a href="formspree.html" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 text-lg font-semibold transition-transform transform hover:scale-105 shadow-lg">
+                    Gửi liên hệ ngay
+                </a>
             </div>
         </section>
-    </main>
+        </main>
 
     
 <footer class="bg-gray-800 text-white py-4 text-center">
@@ -770,32 +765,7 @@
         }
         // ============== END GALLERY SCRIPT ==============
 
-        // Contact Form Submission using Formspree
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const form = e.target;
-                const data = new FormData(form);
-
-                fetch('https://formspree.io/f/xnndrarw', {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).then(response => {
-                    if (response.ok) {
-                        window.location.href = '/thankyou.html';
-                    } else {
-                        alert('Gửi thất bại. Vui lòng thử lại sau.');
-                    }
-                }).catch(error => {
-                    alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
-                    console.error('Form submission error:', error);
-                });
-            });
-        }
+        // === JAVASCRIPT CHO FORM LIÊN HỆ ĐÃ ĐƯỢC XÓA KHỎI ĐÂY ===
 
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
